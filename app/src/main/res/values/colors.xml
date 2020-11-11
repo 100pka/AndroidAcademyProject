@@ -8,4 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="movie_app_background">#191926</color>
+    <color name="genre_stars">#FF3466</color>
+    <color name="title">#ECECEC</color>
+    <color name="review_bar_text">#6D6D80</color>
 </resources>

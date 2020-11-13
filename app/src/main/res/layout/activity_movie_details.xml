@@ -11,12 +11,13 @@
         android:layout_height="0dp"
         android:scaleType="centerCrop"
         android:src="@drawable/background_poster"
-        android:tintMode="multiply"
+        android:background="@drawable/poster_background_gradient"
+        android:alpha="0.05"
         app:layout_constraintBottom_toTopOf="@id/poster_guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/movie_app_background" />
+        />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/poster_guideline"
@@ -83,12 +84,12 @@
 
     <TextView
         android:id="@+id/storyline_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reviews_count"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="24dp"
         android:text="Storyline"
         android:textColor="@color/title"
         android:textSize="14dp"
@@ -96,15 +97,33 @@
 
     <TextView
         android:id="@+id/storyline_body"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/storyline_title"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="16dp"
-        android:text="Storyline"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="4dp"
+        android:layout_marginHorizontal="16dp"
+        android:text="After the devastating events of Avengers: Infinity War, the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe."
         android:textColor="@color/white"
         android:textSize="14dp"
-        />
+        android:lines="6"/>
+
+    <TextView
+        android:id="@+id/cast_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/storyline_body"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginHorizontal="16dp"
+        android:text="Cast"
+        android:textColor="@color/title"
+        android:textSize="14dp"
+        android:textStyle="bold"/>
+
+
+
+
 
 
 

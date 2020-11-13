@@ -11,4 +11,5 @@
     <color name="genre_stars">#FF3466</color>
     <color name="title">#ECECEC</color>
     <color name="review_bar_text">#6D6D80</color>
+    <color name="gradient_poster">#191926</color>
 </resources>

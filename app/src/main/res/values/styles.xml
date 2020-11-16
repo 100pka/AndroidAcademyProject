@@ -4,4 +4,6 @@
         <item name="colorControlNormal">@color/review_bar_text</item>
         <item name="colorControlActivated">@color/genre_stars</item>
     </style>
+
+    <style name="AppTheme" parent="Theme.Design.NoActionBar" />
 </resources>

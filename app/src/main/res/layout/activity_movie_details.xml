@@ -11,24 +11,46 @@
         android:layout_height="0dp"
         android:src="@drawable/background_poster"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toTopOf="@id/poster_guideline_1"
+        app:layout_constraintBottom_toTopOf="@id/title_guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/poster_guideline_1"
+        android:id="@+id/back_button_guideline"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.07"/>
+
+    <ImageView
+        android:id="@+id/back_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        app:layout_constraintTop_toTopOf="@+id/back_button_guideline"
+        app:layout_constraintBottom_toBottomOf="@+id/back_button_guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/ic_path"/>
+
+    <TextView
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintTop_toTopOf="@+id/back_button_guideline"
+        app:layout_constraintBottom_toBottomOf="@+id/back_button_guideline"
+        app:layout_constraintStart_toEndOf="@+id/back_arrow"
+        android:text="@string/back"
+        android:textSize="12sp"
+        android:textColor="@color/white"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/title_guideline"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.36" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/poster_guideline_2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.30" />
 
     <TextView
         android:id="@+id/movie_title"
@@ -40,10 +62,11 @@
         android:textColor="@color/title"
         android:textSize="40dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/genre"
+        app:layout_constraintTop_toTopOf="@+id/title_guideline"
+        app:layout_constraintBottom_toBottomOf="@+id/title_guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/poster_guideline_2" />
+         />
 
     <TextView
         android:id="@+id/genre"
@@ -123,50 +146,71 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/storyline_body" />
 
-    <ImageView
+    <androidx.cardview.widget.CardView
         android:id="@+id/actor_1"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="7dp"
-        android:background="@drawable/rounded_corners_background"
-        android:src="@drawable/robert_downey_jr"
         app:layout_constraintEnd_toStartOf="@+id/actor_2"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="@+id/cast_title"
-        app:layout_constraintTop_toBottomOf="@+id/cast_title" />
+        app:layout_constraintTop_toBottomOf="@+id/cast_title"
+        app:cardCornerRadius="4dp">
+        <ImageView
+            android:id="@+id/actor_1_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/robert_downey_jr"/>
+    </androidx.cardview.widget.CardView>
 
-    <ImageView
+
+    <androidx.cardview.widget.CardView
         android:id="@+id/actor_2"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="7dp"
-        android:background="@drawable/rounded_corners_background"
-        android:src="@drawable/chris_evans"
         app:layout_constraintEnd_toStartOf="@+id/actor_3"
         app:layout_constraintStart_toEndOf="@+id/actor_1"
-        app:layout_constraintTop_toBottomOf="@+id/cast_title" />
+        app:layout_constraintTop_toBottomOf="@+id/cast_title"
+        app:cardCornerRadius="4dp">
+        <ImageView
+            android:id="@+id/actor_2_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/chris_evans"/>
+    </androidx.cardview.widget.CardView>
 
-    <ImageView
+    <androidx.cardview.widget.CardView
         android:id="@+id/actor_3"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="7dp"
-        android:background="@drawable/rounded_corners_background"
-        android:src="@drawable/mark_ruffalo"
         app:layout_constraintEnd_toStartOf="@+id/actor_4"
         app:layout_constraintStart_toEndOf="@+id/actor_2"
-        app:layout_constraintTop_toBottomOf="@+id/cast_title" />
+        app:layout_constraintTop_toBottomOf="@+id/cast_title"
+        app:cardCornerRadius="4dp">
+        <ImageView
+            android:id="@+id/actor_3_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/mark_ruffalo"/>
+    </androidx.cardview.widget.CardView>
 
-    <ImageView
+    <androidx.cardview.widget.CardView
         android:id="@+id/actor_4"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="7dp"
-        android:background="@drawable/rounded_corners_background"
-        android:src="@drawable/chris_hemsworth"
         app:layout_constraintEnd_toEndOf="@+id/cast_title"
         app:layout_constraintStart_toEndOf="@+id/actor_3"
-        app:layout_constraintTop_toBottomOf="@+id/cast_title" />
+        app:layout_constraintTop_toBottomOf="@+id/cast_title"
+        app:cardCornerRadius="4dp">
+        <ImageView
+            android:id="@+id/actor_4_photo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/chris_hemsworth"/>
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/actor_1_name"

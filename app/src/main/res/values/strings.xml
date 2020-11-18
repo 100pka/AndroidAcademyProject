@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">AndroidAcademyProject</string>
     <string name="avangers_genre">Action, Adventure, Fantasy</string>
-    <string name="avengers_title">Avengers:<br/>End Game</string>
+    <string name="avengers_title">Avengers:\n<br/>End Game</string>
     <string name="reviews_count">125 REVIEWS</string>
     <string name="storyline">Storyline</string>
     <string name="avangers_storyline">After the devastating events of Avengers: Infinity War, the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos\' actions and restore balance to the universe.</string>

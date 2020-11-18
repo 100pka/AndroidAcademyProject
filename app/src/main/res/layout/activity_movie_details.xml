@@ -57,6 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
+        android:lines="2"
         android:maxLines="2"
         android:text="@string/avengers_title"
         android:textColor="@color/title"

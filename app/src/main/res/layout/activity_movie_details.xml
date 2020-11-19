@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="@+id/back_button_guideline"
         app:layout_constraintBottom_toBottomOf="@+id/back_button_guideline"
         app:layout_constraintStart_toStartOf="parent"
-        android:src="@drawable/ic_path"/>
+        app:srcCompat = "@drawable/ic_path" />
 
     <TextView
         android:id="@+id/back"
@@ -61,7 +61,7 @@
         android:maxLines="2"
         android:text="@string/avengers_title"
         android:textColor="@color/title"
-        android:textSize="40dp"
+        android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="@+id/title_guideline"
         app:layout_constraintBottom_toBottomOf="@+id/title_guideline"

@@ -43,7 +43,8 @@
         app:layout_constraintStart_toEndOf="@+id/back_arrow"
         android:text="@string/back"
         android:textSize="12sp"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:fontFamily="@font/roboto_regular"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/title_guideline"
@@ -63,6 +64,7 @@
         android:textColor="@color/title"
         android:textSize="40sp"
         android:textStyle="bold"
+        android:fontFamily="@font/roboto_regular"
         app:layout_constraintTop_toTopOf="@+id/title_guideline"
         app:layout_constraintBottom_toBottomOf="@+id/title_guideline"
         app:layout_constraintEnd_toEndOf="parent"
@@ -78,6 +80,7 @@
         android:text="@string/avangers_genre"
         android:textColor="@color/genre_stars"
         android:textSize="14sp"
+        android:fontFamily="@font/roboto_regular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/movie_title" />
@@ -105,6 +108,7 @@
         android:text="@string/reviews_count"
         android:textColor="@color/review_bar_text"
         android:textStyle="bold"
+        android:fontFamily="@font/roboto_regular"
         app:layout_constraintStart_toEndOf="@+id/rating"
         app:layout_constraintTop_toBottomOf="@+id/genre" />
 
@@ -118,6 +122,7 @@
         android:textColor="@color/title"
         android:textSize="14sp"
         android:textStyle="bold"
+        android:fontFamily="@font/roboto_regular"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/reviews_count" />
 
@@ -131,6 +136,7 @@
         android:text="@string/avangers_storyline"
         android:textColor="@color/white"
         android:textSize="14sp"
+        android:fontFamily="@font/roboto_regular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/storyline_title" />
@@ -144,6 +150,7 @@
         android:textColor="@color/title"
         android:textSize="14sp"
         android:textStyle="bold"
+        android:fontFamily="@font/roboto_regular"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/storyline_body" />
 
@@ -222,6 +229,7 @@
         android:textColor="@color/title"
         android:textSize="14sp"
         android:textStyle="bold"
+        android:fontFamily="@font/roboto_regular"
         app:layout_constraintEnd_toStartOf="@+id/actor_2_name"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="@+id/actor_1"
@@ -237,6 +245,7 @@
         android:textColor="@color/title"
         android:textSize="14sp"
         android:textStyle="bold"
+        android:fontFamily="@font/roboto_regular"
         app:layout_constraintEnd_toStartOf="@+id/actor_3_name"
         app:layout_constraintStart_toEndOf="@+id/actor_1_name"
         app:layout_constraintTop_toBottomOf="@+id/actor_2"
@@ -251,6 +260,7 @@
         android:textColor="@color/title"
         android:textSize="14sp"
         android:textStyle="bold"
+        android:fontFamily="@font/roboto_regular"
         app:layout_constraintEnd_toStartOf="@+id/actor_4_name"
         app:layout_constraintStart_toEndOf="@+id/actor_2_name"
         app:layout_constraintTop_toBottomOf="@+id/actor_3"
@@ -265,6 +275,7 @@
         android:textColor="@color/title"
         android:textSize="14sp"
         android:textStyle="bold"
+        android:fontFamily="@font/roboto_regular"
         app:layout_constraintEnd_toEndOf="@+id/actor_4"
         app:layout_constraintStart_toEndOf="@+id/actor_3_name"
         app:layout_constraintTop_toBottomOf="@+id/actor_4"

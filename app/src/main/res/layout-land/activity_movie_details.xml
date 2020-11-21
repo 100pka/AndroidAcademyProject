@@ -13,8 +13,8 @@
             android:id="@+id/background_poster"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:scaleType="centerCrop"
             android:src="@drawable/background_poster"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toTopOf="@id/title_guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -25,29 +25,30 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.07" />
+            app:layout_constraintGuide_percent="0.07"/>
 
         <ImageView
             android:id="@+id/back_arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
-            android:src="@drawable/ic_path"
+            app:layout_constraintTop_toTopOf="@+id/back_button_guideline"
             app:layout_constraintBottom_toBottomOf="@+id/back_button_guideline"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/back_button_guideline" />
+            app:srcCompat = "@drawable/ic_path" />
 
         <TextView
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@string/back"
-            android:textColor="@color/white"
-            android:textSize="12sp"
+            app:layout_constraintTop_toTopOf="@+id/back_button_guideline"
             app:layout_constraintBottom_toBottomOf="@+id/back_button_guideline"
             app:layout_constraintStart_toEndOf="@+id/back_arrow"
-            app:layout_constraintTop_toTopOf="@+id/back_button_guideline" />
+            android:text="@string/back"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/roboto_regular"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/title_guideline"
@@ -61,15 +62,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
+            android:lines="2"
             android:maxLines="2"
             android:text="@string/avengers_title"
             android:textColor="@color/title"
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:textStyle="bold"
+            android:fontFamily="@font/roboto_regular"
+            app:layout_constraintTop_toTopOf="@+id/title_guideline"
             app:layout_constraintBottom_toBottomOf="@+id/title_guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/title_guideline" />
+            />
 
         <TextView
             android:id="@+id/genre"
@@ -80,6 +84,7 @@
             android:text="@string/avangers_genre"
             android:textColor="@color/genre_stars"
             android:textSize="14sp"
+            android:fontFamily="@font/roboto_regular"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/movie_title" />
@@ -107,6 +112,7 @@
             android:text="@string/reviews_count"
             android:textColor="@color/review_bar_text"
             android:textStyle="bold"
+            android:fontFamily="@font/roboto_regular"
             app:layout_constraintStart_toEndOf="@+id/rating"
             app:layout_constraintTop_toBottomOf="@+id/genre" />
 
@@ -120,6 +126,7 @@
             android:textColor="@color/title"
             android:textSize="14sp"
             android:textStyle="bold"
+            android:fontFamily="@font/roboto_regular"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/reviews_count" />
 
@@ -133,6 +140,7 @@
             android:text="@string/avangers_storyline"
             android:textColor="@color/white"
             android:textSize="14sp"
+            android:fontFamily="@font/roboto_regular"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/storyline_title" />
@@ -146,6 +154,7 @@
             android:textColor="@color/title"
             android:textSize="14sp"
             android:textStyle="bold"
+            android:fontFamily="@font/roboto_regular"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/storyline_body" />
 
@@ -154,17 +163,16 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginTop="7dp"
-            app:cardCornerRadius="4dp"
             app:layout_constraintEnd_toStartOf="@+id/actor_2"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="@+id/cast_title"
-            app:layout_constraintTop_toBottomOf="@+id/cast_title">
-
+            app:layout_constraintTop_toBottomOf="@+id/cast_title"
+            app:cardCornerRadius="4dp">
             <ImageView
                 android:id="@+id/actor_1_photo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/robert_downey_jr" />
+                android:src="@drawable/robert_downey_jr"/>
         </androidx.cardview.widget.CardView>
 
 
@@ -173,16 +181,15 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginTop="7dp"
-            app:cardCornerRadius="4dp"
             app:layout_constraintEnd_toStartOf="@+id/actor_3"
             app:layout_constraintStart_toEndOf="@+id/actor_1"
-            app:layout_constraintTop_toBottomOf="@+id/cast_title">
-
+            app:layout_constraintTop_toBottomOf="@+id/cast_title"
+            app:cardCornerRadius="4dp">
             <ImageView
                 android:id="@+id/actor_2_photo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/chris_evans" />
+                android:src="@drawable/chris_evans"/>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -190,16 +197,15 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginTop="7dp"
-            app:cardCornerRadius="4dp"
             app:layout_constraintEnd_toStartOf="@+id/actor_4"
             app:layout_constraintStart_toEndOf="@+id/actor_2"
-            app:layout_constraintTop_toBottomOf="@+id/cast_title">
-
+            app:layout_constraintTop_toBottomOf="@+id/cast_title"
+            app:cardCornerRadius="4dp">
             <ImageView
                 android:id="@+id/actor_3_photo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/mark_ruffalo" />
+                android:src="@drawable/mark_ruffalo"/>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -207,16 +213,15 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_marginTop="7dp"
-            app:cardCornerRadius="4dp"
             app:layout_constraintEnd_toEndOf="@+id/cast_title"
             app:layout_constraintStart_toEndOf="@+id/actor_3"
-            app:layout_constraintTop_toBottomOf="@+id/cast_title">
-
+            app:layout_constraintTop_toBottomOf="@+id/cast_title"
+            app:cardCornerRadius="4dp">
             <ImageView
                 android:id="@+id/actor_4_photo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/chris_hemsworth" />
+                android:src="@drawable/chris_hemsworth"/>
         </androidx.cardview.widget.CardView>
 
         <TextView
@@ -224,57 +229,61 @@
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:maxLines="2"
             android:text="@string/robert_downey_jr"
             android:textColor="@color/title"
             android:textSize="14sp"
             android:textStyle="bold"
+            android:fontFamily="@font/roboto_regular"
             app:layout_constraintEnd_toStartOf="@+id/actor_2_name"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="@+id/actor_1"
-            app:layout_constraintTop_toBottomOf="@+id/actor_1" />
+            app:layout_constraintTop_toBottomOf="@+id/actor_1"
+            android:maxLines="2"/>
 
         <TextView
             android:id="@+id/actor_2_name"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:maxLines="2"
             android:text="@string/chris_evans"
             android:textColor="@color/title"
             android:textSize="14sp"
             android:textStyle="bold"
+            android:fontFamily="@font/roboto_regular"
             app:layout_constraintEnd_toStartOf="@+id/actor_3_name"
             app:layout_constraintStart_toEndOf="@+id/actor_1_name"
-            app:layout_constraintTop_toBottomOf="@+id/actor_2" />
+            app:layout_constraintTop_toBottomOf="@+id/actor_2"
+            android:maxLines="2"/>
 
         <TextView
             android:id="@+id/actor_3_name"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:maxLines="2"
             android:text="@string/mark_ruffalo"
             android:textColor="@color/title"
             android:textSize="14sp"
             android:textStyle="bold"
+            android:fontFamily="@font/roboto_regular"
             app:layout_constraintEnd_toStartOf="@+id/actor_4_name"
             app:layout_constraintStart_toEndOf="@+id/actor_2_name"
-            app:layout_constraintTop_toBottomOf="@+id/actor_3" />
+            app:layout_constraintTop_toBottomOf="@+id/actor_3"
+            android:maxLines="2"/>
 
         <TextView
             android:id="@+id/actor_4_name"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:maxLines="2"
             android:text="@string/chris_hemsworth"
             android:textColor="@color/title"
             android:textSize="14sp"
             android:textStyle="bold"
+            android:fontFamily="@font/roboto_regular"
             app:layout_constraintEnd_toEndOf="@+id/actor_4"
             app:layout_constraintStart_toEndOf="@+id/actor_3_name"
-            app:layout_constraintTop_toBottomOf="@+id/actor_4" />
+            app:layout_constraintTop_toBottomOf="@+id/actor_4"
+            android:maxLines="2"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

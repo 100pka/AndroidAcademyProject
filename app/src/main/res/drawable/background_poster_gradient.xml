@@ -4,7 +4,7 @@
 
     <gradient
         android:angle="90"
-        android:endColor="@color/movie_app_background_transparent"
-        android:startColor="@color/movie_app_background" />
+        android:endColor="@color/background_transparent"
+        android:startColor="@color/background" />
 
 </shape>

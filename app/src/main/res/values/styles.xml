@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="RatingBar" parent="Theme.AppCompat">
-        <item name="colorControlNormal">@color/review_bar_text</item>
-        <item name="colorControlActivated">@color/genre_stars</item>
+        <item name="colorControlNormal">@color/light_grey</item>
+        <item name="colorControlActivated">@color/red</item>
     </style>
 
     <style name="AppTheme" parent="Theme.Design.NoActionBar" />
 
     <style name="movie_details_movie_title">
-        <item name="android:textColor">@color/title</item>
+        <item name="android:textColor">@color/primary</item>
         <item name="android:textSize">@dimen/movie_details_title</item>
         <item name="android:fontFamily">@font/roboto_black</item>
     </style>
 
     <style name="movie_details_actors_names">
-        <item name="android:textColor">@color/actors_names_text</item>
+        <item name="android:textColor">@color/white_secondary</item>
         <item name="android:textSize">@dimen/movie_details_actors_name_text_size</item>
         <item name="android:fontFamily">@font/roboto_black</item>
     </style>
 
     <style name="movie_details_storyline_cast_titles">
-        <item name="android:textColor">@color/title</item>
+        <item name="android:textColor">@color/primary</item>
         <item name="android:textSize">@dimen/movie_details_normal_text_size</item>
         <item name="android:fontFamily">@font/roboto_black</item>
     </style>
@@ -32,13 +32,14 @@
     </style>
 
     <style name="movie_details_reviews_count">
-        <item name="android:textColor">@color/review_bar_text</item>
+        <item name="android:textColor">@color/light_grey</item>
         <item name="android:textSize">@dimen/movie_details_normal_text_size</item>
         <item name="android:fontFamily">@font/roboto_black</item>
+        <item name="android:textAllCaps">true</item>
     </style>
 
     <style name="movie_details_genre">
-        <item name="android:textColor">@color/genre_stars</item>
+        <item name="android:textColor">@color/red</item>
         <item name="android:textSize">@dimen/movie_details_normal_text_size</item>
         <item name="android:fontFamily">@font/roboto_light</item>
     </style>

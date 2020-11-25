@@ -36,8 +36,8 @@
 
         <ImageView
             android:id="@+id/back_arrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="6dp"
+            android:layout_height="10dp"
             android:layout_marginTop="@dimen/back_text_view_top_margin"
             android:layout_marginStart="@dimen/horizontal_screen_boarders_margin"
             app:layout_constraintTop_toTopOf="parent"
@@ -47,15 +47,30 @@
 
         <TextView
             android:id="@+id/back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="16dp"
             android:layout_marginStart="@dimen/double_min_value_margin"
             android:layout_marginTop="@dimen/back_arrow_top_margin"
             app:layout_constraintStart_toEndOf="@+id/back_arrow"
             app:layout_constraintTop_toTopOf="parent"
             android:text="@string/back"
             style="@style/movie_details_back"
-            android:fontFamily="@font/roboto_regular"/>
+            android:textAlignment="center"
+            android:alpha="0.5"
+            />
+
+        <TextView
+            android:id="@+id/age_limit"
+            android:layout_width="0dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="@dimen/horizontal_screen_boarders_margin"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/movie_title"
+            android:text="@string/age"
+            style="@style/movie_details_age_limit"
+            android:textAlignment="center"
+            />
 
         <TextView
             android:id="@+id/movie_title"
@@ -117,8 +132,7 @@
             android:layout_marginHorizontal="@dimen/horizontal_screen_boarders_margin"
             android:layout_marginTop="@dimen/storyline_top_margin"
             android:text="@string/storyline"
-            style="@style/movie_details_storyline_cast_titles"
-            android:fontFamily="@font/roboto_regular"
+            style="@style/movie_details_storyline_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/reviews_count" />
 
@@ -130,6 +144,7 @@
             android:layout_marginTop="@dimen/min_value_margin"
             android:text="@string/avangers_storyline"
             style="@style/movie_details_storyline_body"
+            android:gravity="center_vertical"
             android:alpha="0.75"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -142,22 +157,23 @@
             android:layout_marginHorizontal="@dimen/horizontal_screen_boarders_margin"
             android:layout_marginTop="@dimen/storyline_top_margin"
             android:layout_marginBottom="@dimen/double_min_value_margin"
-            android:fontFamily="@font/roboto_regular"
             android:text="@string/cast"
-            style="@style/movie_details_storyline_cast_titles"
+            style="@style/movie_details_cast_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/actor_1"
-            app:layout_constraintTop_toBottomOf="@+id/storyline_body" />
+            app:layout_constraintTop_toBottomOf="@+id/storyline_body"
+
+            />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/actor_1"
-            android:layout_width="@dimen/actor_photo_size"
-            android:layout_height="@dimen/actor_photo_size"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toStartOf="@+id/actor_2"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="@+id/cast_title"
             app:layout_constraintTop_toBottomOf="@+id/cast_title"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            android:layout_marginEnd="8dp"
             app:cardCornerRadius="@dimen/min_value_margin">
             <ImageView
                 android:id="@+id/actor_1_photo"
@@ -169,11 +185,12 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/actor_2"
-            android:layout_width="@dimen/actor_photo_size"
-            android:layout_height="@dimen/actor_photo_size"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toStartOf="@+id/actor_3"
             app:layout_constraintStart_toEndOf="@+id/actor_1"
             app:layout_constraintTop_toBottomOf="@+id/cast_title"
+            android:layout_marginEnd="8dp"
             app:cardCornerRadius="@dimen/min_value_margin">
             <ImageView
                 android:id="@+id/actor_2_photo"
@@ -184,11 +201,12 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/actor_3"
-            android:layout_width="@dimen/actor_photo_size"
-            android:layout_height="@dimen/actor_photo_size"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             app:layout_constraintEnd_toStartOf="@+id/actor_4"
             app:layout_constraintStart_toEndOf="@+id/actor_2"
             app:layout_constraintTop_toBottomOf="@+id/cast_title"
+            android:layout_marginEnd="8dp"
             app:cardCornerRadius="@dimen/min_value_margin">
             <ImageView
                 android:id="@+id/actor_3_photo"
@@ -199,8 +217,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/actor_4"
-            android:layout_width="@dimen/actor_photo_size"
-            android:layout_height="@dimen/actor_photo_size"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="@+id/cast_title"
             app:layout_constraintStart_toEndOf="@+id/actor_3"
             app:layout_constraintTop_toBottomOf="@+id/cast_title"

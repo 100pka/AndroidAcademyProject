@@ -95,4 +95,9 @@
         <item name="android:lineHeight">16sp</item>
         <item name="android:lineSpacingExtra">2sp</item>
     </style>
+
+    <style name="roundedImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">4dp</item>
+    </style>
 </resources>

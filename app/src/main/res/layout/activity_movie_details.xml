@@ -173,7 +173,7 @@
             android:src="@drawable/robert_downey_jr"
             android:scaleType="centerCrop"
             android:adjustViewBounds="true"
-            app:shapeAppearanceOverlay="@style/roundedImageView"
+            app:shapeAppearance="@style/ShapeAppearance.MaterialComponents.MediumComponent"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintEnd_toStartOf="@+id/actor_2_photo"
             app:layout_constraintStart_toStartOf="@+id/cast_title"
@@ -192,9 +192,8 @@
             app:layout_constraintTop_toTopOf="@+id/actor_1_photo"
             app:layout_constraintBottom_toBottomOf="@+id/actor_1_photo"
             android:layout_marginEnd="@dimen/double_min_value_margin"
-            app:riv_corner_radius="@dimen/min_value_margin"
             android:src="@drawable/chris_evans"
-            app:shapeAppearanceOverlay="@style/roundedImageView"
+            app:shapeAppearance="@style/ShapeAppearance.MaterialComponents.MediumComponent"
             />
 
         <com.google.android.material.imageview.ShapeableImageView
@@ -208,9 +207,8 @@
             app:layout_constraintTop_toTopOf="@+id/actor_1_photo"
             app:layout_constraintBottom_toBottomOf="@+id/actor_1_photo"
             android:layout_marginEnd="@dimen/double_min_value_margin"
-            app:riv_corner_radius="@dimen/min_value_margin"
             android:src="@drawable/mark_ruffalo"
-            app:shapeAppearanceOverlay="@style/roundedImageView"
+            app:shapeAppearance="@style/ShapeAppearance.MaterialComponents.MediumComponent"
             />
 
         <com.google.android.material.imageview.ShapeableImageView
@@ -223,9 +221,8 @@
             app:layout_constraintStart_toEndOf="@+id/actor_3_photo"
             app:layout_constraintTop_toTopOf="@+id/actor_1_photo"
             app:layout_constraintBottom_toBottomOf="@+id/actor_1_photo"
-            app:riv_corner_radius="@dimen/min_value_margin"
             android:src="@drawable/chris_hemsworth"
-            app:shapeAppearanceOverlay="@style/roundedImageView"
+            app:shapeAppearance="@style/ShapeAppearance.MaterialComponents.MediumComponent"
             />
 
 

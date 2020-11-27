@@ -10,6 +10,7 @@
     <dimen name="actor_photo_size">80dp</dimen>
     <dimen name="movie_details_normal_text_size">14sp</dimen>
     <dimen name="movie_details_actors_name_text_size">12sp</dimen>
+    <dimen name="movie_list_posters_margin">12sp</dimen>
     <dimen name="movie_details_title">40sp</dimen>
     <dimen name="movie_details_bottom_margin">109dp</dimen>
 </resources>

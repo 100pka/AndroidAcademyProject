@@ -14,5 +14,6 @@
     <color name="light_grey">#6D6D80</color>
     <color name="white_secondary">#D8D8D8</color>
     <color name="title_shadow">#80000000</color>
-
+    <color name="grey">#565665</color>
+    <color name="stroke_line_color">#80636375</color>
 </resources>

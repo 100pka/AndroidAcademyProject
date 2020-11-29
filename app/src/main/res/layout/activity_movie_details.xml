@@ -67,7 +67,7 @@
             android:layout_marginBottom="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/movie_title"
-            android:text="@string/age"
+            android:text="@string/avengers_age_limit"
             style="@style/movie_details_age_limit"
             android:textAlignment="center"
             />

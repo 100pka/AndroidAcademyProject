@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(), ClickListener {
     }
 
     override fun onBackPressed() {
-        if (supportFragmentManager.fragments.size > 1) {
+        if (supportFragmentManager.backStackEntryCount > 1) {
             backPressed()
         } else {
             super.onBackPressed()
@@ -38,21 +38,17 @@ class MainActivity : AppCompatActivity(), ClickListener {
     }
 
     override fun backPressed() {
-        supportFragmentManager.beginTransaction().apply {
-            remove(moviesDetails)
-            show(moviesList)
-            commit()
-        }
-        Log.i("MainActivity", "backStackEntryCount: ${supportFragmentManager.fragments.size}")
+        supportFragmentManager.popBackStack()
+        Log.i("MainActivity", "backStackEntryCount: ${supportFragmentManager.backStackEntryCount}")
     }
 
     override fun movieClicked() {
         supportFragmentManager.beginTransaction()
             .apply {
-                hide(moviesList)
                 add(R.id.fragments_container, moviesDetails)
+                addToBackStack("movieDetails")
                 commit()
             }
-        Log.i("MainActivity", "backStackEntryCount: ${supportFragmentManager.fragments.size}")
+        Log.i("MainActivity", "backStackEntryCount: ${supportFragmentManager.backStackEntryCount}")
     }
 }

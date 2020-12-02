@@ -52,7 +52,6 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="@+id/back"
             app:layout_constraintBottom_toBottomOf="@+id/back"
-            app:layout_constraintEnd_toStartOf="@+id/back"
             app:layout_constraintStart_toEndOf="@+id/start_margin_guideline"
             app:srcCompat = "@drawable/ic_path" />
 
@@ -67,7 +66,6 @@
             android:text="@string/back"
             style="@style/TextView.MovieDetailsBack"
             android:textAlignment="center"
-            android:alpha="0.5"
             />
 
         <TextView
@@ -152,7 +150,6 @@
             android:layout_marginTop="@dimen/margin_4"
             android:text="@string/avengers_storyline"
             style="@style/TextView.MovieDetailsStoryLineBody"
-            android:alpha="0.75"
             android:gravity="center_vertical"
             app:layout_constraintEnd_toStartOf="@+id/end_margin_guideline"
             app:layout_constraintStart_toEndOf="@+id/start_margin_guideline"

@@ -48,7 +48,7 @@
     </style>
 
     <style name="TextView.MovieDetailsStoryLineBody">
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/white_transparent_75</item>
         <item name="android:textSize">@dimen/text_size_14</item>
         <item name="android:fontFamily">@font/roboto_light</item>
         <item name="android:lineSpacingExtra">4sp</item>
@@ -76,7 +76,7 @@
     </style>
 
     <style name="TextView.MovieDetailsBack">
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/white_transparent_50</item>
         <item name="android:textSize">@dimen/text_size_12</item>
         <item name="android:fontFamily">@font/roboto_light</item>
         <item name="android:lineSpacingExtra">2sp</item>

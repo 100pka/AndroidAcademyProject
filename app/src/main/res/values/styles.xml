@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="RatingBar" parent="Theme.AppCompat">
         <item name="colorControlNormal">@color/light_grey</item>
         <item name="colorControlActivated">@color/red</item>
@@ -7,160 +8,80 @@
 
     <style name="AppTheme" parent="Theme.Design.NoActionBar" />
 
-    <style name="movie_details_movie_title">
+    <style name="TextView" />
+
+    <style name="TextView.MovieDetailsTitle">
         <item name="android:textColor">@color/primary</item>
         <item name="android:shadowColor">@color/title_shadow</item>
-        <item name="android:textSize">@dimen/movie_details_title</item>
+        <item name="android:textSize">@dimen/text_size_40</item>
         <item name="android:fontFamily">@font/roboto_black</item>
-        <item name="android:textFontWeight">900</item>
-        <item name="android:lineHeight">40sp</item>
         <item name="android:shadowDx">0</item>
         <item name="android:shadowDy">6</item>
         <item name="android:shadowRadius">12</item>
     </style>
 
-    <style name="movie_details_actors_names">
+    <style name="TextView.MovieDetailsActors">
         <item name="android:textColor">@color/white_secondary</item>
-        <item name="android:textSize">@dimen/movie_details_actors_name_text_size</item>
-        <item name="android:fontFamily">@font/roboto_regular</item>
-        <item name="android:textFontWeight">900</item>
-        <item name="android:lineHeight">16sp</item>
+        <item name="android:textSize">@dimen/text_size_12</item>
+        <item name="android:fontFamily">@font/roboto_black</item>
         <item name="android:lineSpacingExtra">2sp</item>
     </style>
 
-    <style name="movie_details_storyline_title">
+    <style name="TextView.MovieDetailsStoryLineTitle">
         <item name="android:textColor">@color/primary</item>
-        <item name="android:textSize">@dimen/movie_details_normal_text_size</item>
-        <item name="android:fontFamily">@font/roboto_regular</item>
-        <item name="android:lineHeight">20sp</item>
-        <item name="android:textFontWeight">900</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:fontFamily">@font/roboto_black</item>
         <item name="android:lineSpacingExtra">4sp</item>
         <item name="android:shadowDx">0</item>
         <item name="android:shadowDy">6</item>
         <item name="android:shadowRadius">12</item>
     </style>
 
-    <style name="movie_details_cast_title">
+    <style name="TextView.MovieDetailsCastTitle">
         <item name="android:textColor">@color/primary</item>
-        <item name="android:textSize">@dimen/movie_details_normal_text_size</item>
-        <item name="android:fontFamily">@font/roboto_regular</item>
-        <item name="android:lineHeight">24sp</item>
-        <item name="android:textFontWeight">900</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:fontFamily">@font/roboto_black</item>
         <item name="android:lineSpacingExtra">8sp</item>
         <item name="android:shadowDx">0</item>
         <item name="android:shadowDy">6</item>
         <item name="android:shadowRadius">12</item>
     </style>
 
-    <style name="movie_details_storyline_body">
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">@dimen/movie_details_normal_text_size</item>
-        <item name="android:fontFamily">@font/roboto_regular</item>
-        <item name="android:lineHeight">20sp</item>
-        <item name="android:textFontWeight">300</item>
-        <item name="android:lineSpacingExtra">4sp</item>
-    </style>
-
-    <style name="movie_details_reviews_count">
-        <item name="android:textColor">@color/light_grey</item>
-        <item name="android:textSize">@dimen/movie_details_normal_text_size</item>
-        <item name="android:fontFamily">@font/roboto_regular</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:lineHeight">20sp</item>
-        <item name="android:textFontWeight">900</item>
-        <item name="android:lineSpacingExtra">4sp</item>
-    </style>
-
-    <style name="movie_details_genre">
-        <item name="android:textColor">@color/red</item>
-        <item name="android:textSize">@dimen/movie_details_normal_text_size</item>
-        <item name="android:fontFamily">@font/roboto_regular</item>
-        <item name="android:lineHeight">20sp</item>
-        <item name="android:textFontWeight">300</item>
-        <item name="android:lineSpacingExtra">4sp</item>
-    </style>
-
-    <style name="movie_details_age_limit">
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">@dimen/movie_details_actors_name_text_size</item>
-        <item name="android:fontFamily">@font/roboto_regular</item>
-        <item name="android:lineHeight">14sp</item>
-        <item name="android:textFontWeight">900</item>
-    </style>
-
-    <style name="movie_list_age_limit">
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">@dimen/movie_details_actors_name_text_size</item>
-        <item name="android:fontFamily">@font/roboto_regular</item>
-        <item name="android:lineHeight">14sp</item>
-        <item name="android:textFontWeight">900</item>
-    </style>
-
-    <style name="movie_details_back">
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">@dimen/movie_details_actors_name_text_size</item>
+    <style name="TextView.MovieDetailsStoryLineBody">
+        <item name="android:textColor">@color/white_transparent_75</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
         <item name="android:fontFamily">@font/roboto_light</item>
-        <item name="android:lineHeight">16sp</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+    </style>
+
+    <style name="TextView.MovieDetailsReviewsCount">
+        <item name="android:textColor">@color/light_grey</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:fontFamily">@font/roboto_black</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+    </style>
+
+    <style name="TextView.MovieDetailsGenre">
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:fontFamily">@font/roboto_light</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+    </style>
+
+    <style name="TextView.MovieDetailsAgeLimit">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/text_size_12</item>
+        <item name="android:fontFamily">@font/roboto_black</item>
+    </style>
+
+    <style name="TextView.MovieDetailsBack">
+        <item name="android:textColor">@color/white_transparent_50</item>
+        <item name="android:textSize">@dimen/text_size_12</item>
+        <item name="android:fontFamily">@font/roboto_light</item>
         <item name="android:lineSpacingExtra">2sp</item>
     </style>
 
-    <style name="movie_list_fragment_title">
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">@dimen/movie_details_normal_text_size</item>
-        <item name="android:fontFamily">@font/roboto_regular</item>
-        <item name="android:lineHeight">20sp</item>
-        <item name="android:textFontWeight">900</item>
-        <item name="android:lineSpacingExtra">4sp</item>
-    </style>
 
-    <style name="movie_list_movie_title">
-        <item name="android:textColor">@color/primary</item>
-        <item name="android:textSize">@dimen/movie_details_normal_text_size</item>
-        <item name="android:fontFamily">@font/roboto_regular</item>
-        <item name="android:lineHeight">20sp</item>
-        <item name="android:textFontWeight">900</item>
-        <item name="android:lineSpacingExtra">4sp</item>
-    </style>
-
-    <style name="movie_list_duration">
-        <item name="android:textColor">@color/grey</item>
-        <item name="android:textSize">@dimen/movie_list_small_size_text</item>
-        <item name="android:fontFamily">@font/roboto_regular</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:lineHeight">20sp</item>
-        <item name="android:textFontWeight">900</item>
-        <item name="android:lineSpacingExtra">3sp</item>
-    </style>
-
-    <style name="movie_list_genre">
-        <item name="android:textColor">@color/red</item>
-        <item name="android:textSize">@dimen/movie_list_small_size_text</item>
-        <item name="android:fontFamily">@font/roboto_regular</item>
-        <item name="android:lineHeight">12sp</item>
-        <item name="android:textFontWeight">300</item>
-        <item name="android:lineSpacingExtra">3sp</item>
-    </style>
-
-    <style name="movie_list_reviews_count">
-        <item name="android:textColor">@color/light_grey</item>
-        <item name="android:textSize">@dimen/movie_list_small_size_text</item>
-        <item name="android:fontFamily">@font/roboto_regular</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:lineHeight">12sp</item>
-        <item name="android:textFontWeight">900</item>
-        <item name="android:lineSpacingExtra">3sp</item>
-    </style>
-
-
-
-    <style name="MoviesRatingBar" parent="Widget.AppCompat.RatingBar">
-        <item name="android:progressDrawable">@drawable/custom_ratingbar_selector</item>
-        <item name="android:minHeight">8dp</item>
-        <item name="android:maxHeight">8dp</item>
-    </style>
-
-    <style name="MovieList_Poster_Image" parent="ShapeAppearance.MaterialComponents.MediumComponent">
-        <item name="cornerSize">@dimen/double_min_value_margin</item>
-    </style>
 
 </resources>

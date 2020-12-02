@@ -13,7 +13,7 @@
     <style name="TextView.MovieDetailsTitle">
         <item name="android:textColor">@color/primary</item>
         <item name="android:shadowColor">@color/title_shadow</item>
-        <item name="android:textSize">@dimen/text_40</item>
+        <item name="android:textSize">@dimen/text_size_40</item>
         <item name="android:fontFamily">@font/roboto_black</item>
         <item name="android:shadowDx">0</item>
         <item name="android:shadowDy">6</item>
@@ -22,14 +22,14 @@
 
     <style name="TextView.MovieDetailsActors">
         <item name="android:textColor">@color/white_secondary</item>
-        <item name="android:textSize">@dimen/text_12</item>
+        <item name="android:textSize">@dimen/text_size_12</item>
         <item name="android:fontFamily">@font/roboto_black</item>
         <item name="android:lineSpacingExtra">2sp</item>
     </style>
 
     <style name="TextView.MovieDetailsStoryLineTitle">
         <item name="android:textColor">@color/primary</item>
-        <item name="android:textSize">@dimen/text_14</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
         <item name="android:fontFamily">@font/roboto_black</item>
         <item name="android:lineSpacingExtra">4sp</item>
         <item name="android:shadowDx">0</item>
@@ -39,7 +39,7 @@
 
     <style name="TextView.MovieDetailsCastTitle">
         <item name="android:textColor">@color/primary</item>
-        <item name="android:textSize">@dimen/text_14</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
         <item name="android:fontFamily">@font/roboto_black</item>
         <item name="android:lineSpacingExtra">8sp</item>
         <item name="android:shadowDx">0</item>
@@ -49,14 +49,14 @@
 
     <style name="TextView.MovieDetailsStoryLineBody">
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">@dimen/text_14</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
         <item name="android:fontFamily">@font/roboto_light</item>
         <item name="android:lineSpacingExtra">4sp</item>
     </style>
 
     <style name="TextView.MovieDetailsReviewsCount">
         <item name="android:textColor">@color/light_grey</item>
-        <item name="android:textSize">@dimen/text_14</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
         <item name="android:fontFamily">@font/roboto_black</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:lineSpacingExtra">4sp</item>
@@ -64,20 +64,20 @@
 
     <style name="TextView.MovieDetailsGenre">
         <item name="android:textColor">@color/red</item>
-        <item name="android:textSize">@dimen/text_14</item>
+        <item name="android:textSize">@dimen/text_size_14</item>
         <item name="android:fontFamily">@font/roboto_light</item>
         <item name="android:lineSpacingExtra">4sp</item>
     </style>
 
     <style name="TextView.MovieDetailsAgeLimit">
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">@dimen/text_12</item>
+        <item name="android:textSize">@dimen/text_size_12</item>
         <item name="android:fontFamily">@font/roboto_black</item>
     </style>
 
     <style name="TextView.MovieDetailsBack">
         <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">@dimen/text_12</item>
+        <item name="android:textSize">@dimen/text_size_12</item>
         <item name="android:fontFamily">@font/roboto_light</item>
         <item name="android:lineSpacingExtra">2sp</item>
     </style>

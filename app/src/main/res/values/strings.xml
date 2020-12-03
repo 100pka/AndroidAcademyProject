@@ -12,7 +12,23 @@
     <string name="chris_hemsworth">Chris\nHemsworth</string>
     <string name="back">Back</string>
     <string name="age">13+</string>
-    <string name="avengers_age_limit">13+</string>
     <string name="movies_list">Movies list</string>
+    <string name="avengers_age_limit">13+</string>
+    <string name="movie_list">Movies list</string>
+    <string name="avengers_end_game_movie_list">Avengers: End Game</string>
+    <string name="tenet">Tenet</string>
+    <string name="black_widow">Black Widow</string>
+    <string name="wonder_woman_1984">Wonder Woman 1984</string>
+    <string name="avengers_duration">137 min</string>
     <string name="action_adventure_drama">Action, Adventure, Drama</string>
+    <string name="tenet_duration">97 min</string>
+    <string name="tenet_reviews">98 reviews</string>
+    <string name="action_sci_fi_thriller">Action, Sci-Fi, Thriller</string>
+    <string name="widow_reviews">38 reviews</string>
+    <string name="widow_duration">102 min</string>
+    <string name="action_adventure_sci_fi">Action, Adventure, Sci-Fi</string>
+    <string name="wonderwoman_reviews">74 reviews</string>
+    <string name="action_adventure_fantasy">Action, Adventure, Fantasy</string>
+    <string name="wonderwoman_duration">120 min</string>
+    <string name="tenet_age_limit">16+</string>
 </resources>

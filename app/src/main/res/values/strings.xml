@@ -14,4 +14,5 @@
     <string name="age">13+</string>
     <string name="avengers_age_limit">13+</string>
     <string name="movies_list">Movies list</string>
+    <string name="action_adventure_drama">Action, Adventure, Drama</string>
 </resources>

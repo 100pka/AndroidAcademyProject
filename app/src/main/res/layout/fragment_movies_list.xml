@@ -14,12 +14,10 @@
         <ImageView
             android:id="@+id/ic_aim"
             android:layout_width="wrap_content"
-            android:layout_height="16dp"
-            android:layout_marginStart="@dimen/horizontal_screen_boarders_margin"
-            android:layout_marginTop="@dimen/back_arrow_top_margin"
-            app:layout_constraintEnd_toStartOf="@+id/movie_list_title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/start_margin_guideline"
+            app:layout_constraintTop_toTopOf="@+id/movie_list_title"
+            app:layout_constraintBottom_toBottomOf="@+id/movie_list_title"
             app:srcCompat="@drawable/ic_aim" />
 
         <TextView
@@ -27,9 +25,9 @@
             style="@style/movie_list_fragment_title"
             android:layout_width="0dp"
             android:layout_height="16dp"
-            android:layout_marginStart="@dimen/double_min_value_margin"
-            android:layout_marginTop="55dp"
-            android:text="@string/movie_list"
+            android:layout_marginStart="@dimen/margin_8"
+            android:layout_marginTop="@dimen/margin_56"
+            android:text="@string/movies_list"
             android:textAlignment="center"
             app:layout_constraintStart_toEndOf="@+id/ic_aim"
             app:layout_constraintTop_toTopOf="parent" />

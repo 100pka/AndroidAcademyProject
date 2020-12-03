@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/background"
-    android:fillViewport="true">
-
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -175,22 +172,21 @@
                     android:layout_marginBottom="@dimen/margin_8"
                     android:text="@string/avengers_duration"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/movie_1_title" />
+                    app:layout_constraintTop_toBottomOf="@+id/movie_1_title"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </com.google.android.material.card.MaterialCardView>
 
-
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/movie_2"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
             app:cardBackgroundColor="@color/background"
             app:cardCornerRadius="@dimen/corner_8"
-            app:layout_constraintBottom_toBottomOf="@+id/movie_1"
             app:layout_constraintEnd_toStartOf="@+id/end_margin_guideline"
             app:layout_constraintStart_toEndOf="@+id/movie_1"
             app:layout_constraintTop_toTopOf="@id/movie_1"
@@ -281,8 +277,8 @@
                     style="@style/TextView.MovieListReviewsCount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="@dimen/margin_6"
+                    android:layout_marginTop="@dimen/margin_2"
                     android:gravity="center_vertical"
                     android:text="@string/tenet_reviews"
                     app:layout_constraintBottom_toBottomOf="@+id/movie_2_poster"
@@ -308,7 +304,8 @@
                     android:layout_marginBottom="@dimen/margin_8"
                     android:text="@string/tenet_duration"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/movie_2_title" />
+                    app:layout_constraintTop_toBottomOf="@+id/movie_2_title"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -318,262 +315,274 @@
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/movie_3"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_12"
+            android:layout_marginBottom="@dimen/margin_16"
             android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
             app:cardBackgroundColor="@color/background"
             app:cardCornerRadius="@dimen/corner_8"
-            app:layout_constraintEnd_toEndOf="@+id/movie_1"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintTop_toBottomOf="@+id/movie_1"
+            app:layout_constraintEnd_toStartOf="@+id/movie_4"
             app:layout_constraintStart_toEndOf="@+id/start_margin_guideline"
-            app:layout_constraintTop_toBottomOf="@id/movie_1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:strokeColor="@color/stroke_line_color"
-            app:strokeWidth="@dimen/stroke_1" />
+            app:strokeWidth="@dimen/stroke_1">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/movie_list_card_background">
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/movie_3_poster"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/margin_2"
-                android:layout_marginTop="@dimen/margin_2"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/black_widow_poster"
-                app:layout_constraintBottom_toTopOf="@+id/movie_3_title"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearance="@style/MovieList_Poster_Image" />
-
-            <ImageView
-                android:id="@+id/movie_3_poster_gradient"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:src="@drawable/background_poster_gradient"
-                app:layout_constraintBottom_toBottomOf="@+id/movie_3_poster"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/movie_3_age_limit"
-                style="@style/movie_list_age_limit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/ic_age_limit_background"
-                android:gravity="center"
-                android:text="@string/avengers_age_limit"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/movie_3_like"
-                android:layout_width="16dp"
-                android:layout_height="14dp"
-                android:layout_marginTop="13dp"
-                android:layout_marginEnd="6dp"
-                android:alpha="0.75"
-                android:src="@drawable/ic_like_off"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/movie_3_genre"
-                style="@style/movie_list_genre"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/double_min_value_margin"
-                android:layout_marginVertical="214dp"
-                android:text="@string/action_adventure_sci_fi"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="match_parent"
+                android:background="@drawable/movie_list_card_background">
 
-            <com.stopkaaaa.androidacademyproject.RatingBarSvg
-                android:id="@+id/movie_3_rating"
-                style="@style/MoviesRatingBar"
-                android:layout_width="wrap_content"
-                android:layout_height="8dp"
-                android:layout_marginStart="@dimen/double_min_value_margin"
-                android:numStars="5"
-                android:rating="4"
-                android:stepSize="1"
-                app:layout_constraintBottom_toBottomOf="@+id/movie_3_reviews_count"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/movie_3_reviews_count" />
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/movie_3_poster"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_2"
+                    android:layout_marginTop="@dimen/margin_2"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/black_widow_poster"
+                    app:layout_constraintBottom_toTopOf="@+id/movie_3_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/movie_3_reviews_count"
-                style="@style/movie_list_reviews_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:layout_marginTop="2dp"
-                android:gravity="center_vertical"
-                android:text="@string/widow_reviews"
-                app:layout_constraintStart_toEndOf="@+id/movie_3_rating"
-                app:layout_constraintTop_toBottomOf="@+id/movie_3_genre" />
+                <ImageView
+                    android:id="@+id/movie_3_poster_gradient"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/background_poster_gradient"
+                    app:layout_constraintBottom_toBottomOf="@+id/movie_3_poster"
+                    app:layout_constraintEnd_toEndOf="@+id/movie_3_poster"
+                    app:layout_constraintStart_toStartOf="@+id/movie_3_poster"
+                    app:layout_constraintTop_toTopOf="@+id/movie_3_poster" />
 
-            <TextView
-                android:id="@+id/movie_3_title"
-                style="@style/movie_list_movie_title"
+                <TextView
+                    android:id="@+id/movie_3_genre"
+                    style="@style/TextView.MovieListGenre"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_8"
+                    android:layout_marginBottom="@dimen/margin_2"
+                    android:text="@string/action_adventure_drama"
+                    app:layout_constraintBottom_toTopOf="@+id/movie_3_reviews_count"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/movie_3_age_limit"
+                    style="@style/TextView.MovieListAge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_8"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:background="@drawable/ic_age_limit_background"
+                    android:gravity="center"
+                    android:text="@string/avengers_age_limit"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/movie_3_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_12"
+                    android:layout_marginEnd="@dimen/margin_8"
+                    android:alpha="0.75"
+                    android:src="@drawable/ic_like_off"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.stopkaaaa.androidacademyproject.RatingBarSvg
+                    android:id="@+id/movie_3_rating"
+                    style="@style/MoviesRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/margin_8"
+                    android:layout_marginStart="@dimen/margin_8"
+                    android:numStars="5"
+                    android:rating="4"
+                    android:stepSize="1"
+                    app:layout_constraintBottom_toBottomOf="@+id/movie_3_reviews_count"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/movie_3_reviews_count" />
+
+                <TextView
+                    android:id="@+id/movie_3_reviews_count"
+                    style="@style/TextView.MovieListReviewsCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_6"
+                    android:layout_marginTop="@dimen/margin_2"
+                    android:gravity="center_vertical"
+                    android:text="@string/reviews_count"
+                    app:layout_constraintBottom_toBottomOf="@+id/movie_3_poster"
+                    app:layout_constraintStart_toEndOf="@+id/movie_3_rating" />
+
+                <TextView
+                    android:id="@+id/movie_3_title"
+                    style="@style/TextView.MovieListMovieTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_8"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:text="@string/avengers_end_game_movie_list"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/movie_3_poster" />
+
+                <TextView
+                    android:id="@+id/movie_3_duration"
+                    style="@style/TextView.MovieListDuration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_8"
+                    android:layout_marginBottom="@dimen/margin_8"
+                    android:text="@string/avengers_duration"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/movie_3_title"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/movie_4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12"
+            android:layout_marginBottom="@dimen/margin_16"
+            android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
+            app:cardBackgroundColor="@color/background"
+            app:cardCornerRadius="@dimen/corner_8"
+            app:layout_constraintTop_toBottomOf="@+id/movie_2"
+            app:layout_constraintEnd_toStartOf="@+id/end_margin_guideline"
+            app:layout_constraintStart_toEndOf="@+id/movie_3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:strokeColor="@color/stroke_line_color"
+            app:strokeWidth="@dimen/stroke_1">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/double_min_value_margin"
-                android:layout_marginTop="@dimen/double_min_value_margin"
-                android:text="@string/black_widow"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/movie_3_poster" />
+                android:layout_height="match_parent"
+                android:background="@drawable/movie_list_card_background">
 
-            <TextView
-                android:id="@+id/movie_3_duration"
-                style="@style/movie_list_duration"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/double_min_value_margin"
-                android:layout_marginBottom="@dimen/double_min_value_margin"
-                android:text="@string/widow_duration"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/movie_3_title" />
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/movie_4_poster"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_2"
+                    android:layout_marginTop="@dimen/margin_2"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/wonder_woman_poster"
+                    app:layout_constraintBottom_toTopOf="@+id/movie_4_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:id="@+id/movie_4_poster_gradient"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/background_poster_gradient"
+                    app:layout_constraintBottom_toBottomOf="@+id/movie_4_poster"
+                    app:layout_constraintEnd_toEndOf="@+id/movie_4_poster"
+                    app:layout_constraintStart_toStartOf="@+id/movie_4_poster"
+                    app:layout_constraintTop_toTopOf="@+id/movie_4_poster" />
 
-    </com.google.android.material.card.MaterialCardView>
+                <TextView
+                    android:id="@+id/movie_4_age_limit"
+                    style="@style/TextView.MovieListAge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_8"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:background="@drawable/ic_age_limit_background"
+                    android:gravity="center"
+                    android:text="@string/tenet_age_limit"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/movie_4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
-        app:cardBackgroundColor="@color/background"
-        app:cardCornerRadius="8dp"
-        app:layout_constraintBottom_toBottomOf="@id/movie_3"
-        app:layout_constraintEnd_toStartOf="@+id/end_margin_guideline"
-        app:layout_constraintStart_toStartOf="@+id/movie_2"
-        app:layout_constraintTop_toTopOf="@id/movie_3"
-        app:strokeColor="@color/stroke_line_color"
-        app:strokeWidth="1dp">
+                <ImageView
+                    android:id="@+id/movie_4_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_12"
+                    android:layout_marginEnd="@dimen/margin_8"
+                    android:alpha="0.75"
+                    android:src="@drawable/ic_like_on"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/movie_list_card_background">
+                <TextView
+                    android:id="@+id/movie_4_genre"
+                    style="@style/TextView.MovieListGenre"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_8"
+                    android:layout_marginBottom="@dimen/margin_2"
+                    android:text="@string/action_sci_fi_thriller"
+                    app:layout_constraintBottom_toTopOf="@+id/movie_4_reviews_count"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/movie_4_poster"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/margin_2"
-                android:layout_marginTop="@dimen/margin_2"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/wonder_woman_poster"
-                app:layout_constraintBottom_toTopOf="@+id/movie_4_title"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearance="@style/MovieList_Poster_Image" />
+                <com.stopkaaaa.androidacademyproject.RatingBarSvg
+                    android:id="@+id/movie_4_rating"
+                    style="@style/MoviesRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/margin_8"
+                    android:layout_marginStart="@dimen/margin_8"
+                    android:numStars="5"
+                    android:rating="5"
+                    android:stepSize="1"
+                    app:layout_constraintBottom_toBottomOf="@+id/movie_4_reviews_count"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/movie_4_reviews_count" />
 
-            <ImageView
-                android:id="@+id/movie_4_poster_gradient"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:src="@drawable/background_poster_gradient"
-                app:layout_constraintBottom_toBottomOf="@+id/movie_4_poster"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/movie_4_reviews_count"
+                    style="@style/TextView.MovieListReviewsCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_6"
+                    android:layout_marginTop="@dimen/margin_2"
+                    android:gravity="center_vertical"
+                    android:text="@string/tenet_reviews"
+                    app:layout_constraintBottom_toBottomOf="@+id/movie_4_poster"
+                    app:layout_constraintStart_toEndOf="@+id/movie_4_rating" />
 
-            <TextView
-                android:id="@+id/movie_4_age_limit"
-                style="@style/movie_list_age_limit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/ic_age_limit_background"
-                android:gravity="center"
-                android:text="@string/avengers_age_limit"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/movie_4_title"
+                    style="@style/TextView.MovieListMovieTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_8"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:text="@string/tenet"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/movie_4_poster" />
 
-            <ImageView
-                android:id="@+id/movie_4_like"
-                android:layout_width="16dp"
-                android:layout_height="14dp"
-                android:layout_marginTop="13dp"
-                android:layout_marginEnd="6dp"
-                android:alpha="0.75"
-                android:src="@drawable/ic_like_off"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/movie_4_duration"
+                    style="@style/TextView.MovieListDuration"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_8"
+                    android:layout_marginBottom="@dimen/margin_8"
+                    android:text="@string/tenet_duration"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/movie_4_title"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
-            <TextView
-                android:id="@+id/movie_4_genre"
-                style="@style/movie_list_genre"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/double_min_value_margin"
-                android:layout_marginVertical="214dp"
-                android:text="@string/action_adventure_fantasy"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.stopkaaaa.androidacademyproject.RatingBarSvg
-                android:id="@+id/movie_4_rating"
-                style="@style/MoviesRatingBar"
-                android:layout_width="wrap_content"
-                android:layout_height="8dp"
-                android:layout_marginStart="@dimen/double_min_value_margin"
-                android:numStars="5"
-                android:rating="5"
-                android:stepSize="1"
-                app:layout_constraintBottom_toBottomOf="@+id/movie_4_reviews_count"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/movie_4_reviews_count" />
 
-            <TextView
-                android:id="@+id/movie_4_reviews_count"
-                style="@style/movie_list_reviews_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:layout_marginTop="2dp"
-                android:gravity="center_vertical"
-                android:text="@string/wonderwoman_reviews"
-                app:layout_constraintStart_toEndOf="@+id/movie_4_rating"
-                app:layout_constraintTop_toBottomOf="@+id/movie_4_genre" />
+        </com.google.android.material.card.MaterialCardView>
 
-            <TextView
-                android:id="@+id/movie_4_title"
-                style="@style/movie_list_movie_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/double_min_value_margin"
-                android:layout_marginTop="@dimen/double_min_value_margin"
-                android:text="@string/wonder_woman_1984"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/movie_4_poster" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/movie_4_duration"
-                style="@style/movie_list_duration"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/double_min_value_margin"
-                android:layout_marginBottom="@dimen/double_min_value_margin"
-                android:text="@string/wonderwoman_duration"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/movie_4_title" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </com.google.android.material.card.MaterialCardView>
-</androidx.constraintlayout.widget.ConstraintLayout></ScrollView>
+</ScrollView>

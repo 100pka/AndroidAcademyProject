@@ -39,18 +39,17 @@ class FragmentMoviesList: Fragment() {
         }
     }
 
-    fun setListener(l: ClickListener) {
-        listener = l
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        this.listener = activity as ClickListener
+        if (activity is ClickListener) {
+            this.listener = activity as ClickListener
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     override fun onDetach() {

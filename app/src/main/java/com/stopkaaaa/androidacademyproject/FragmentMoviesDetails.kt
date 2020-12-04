@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.stopkaaaa.androidacademyproject.databinding.FragmentMoviesDetailsBinding
-import com.stopkaaaa.androidacademyproject.databinding.FragmentMoviesListBinding
 
 class FragmentMoviesDetails : Fragment() {
+
 
     private var _binding: FragmentMoviesDetailsBinding? = null
     private val binding get() = _binding!!
@@ -31,18 +31,16 @@ class FragmentMoviesDetails : Fragment() {
         }
     }
 
-    fun setListener(l: ClickListener) {
-        listener = l
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        this.listener = activity as ClickListener
+        if (activity is ClickListener) {
+            this.listener = activity as ClickListener
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     override fun onDetach() {

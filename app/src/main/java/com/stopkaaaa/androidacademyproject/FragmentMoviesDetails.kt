@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.stopkaaaa.androidacademyproject.databinding.FragmentMoviesDetailsBinding
-import com.stopkaaaa.androidacademyproject.databinding.FragmentMoviesListBinding
 
 class FragmentMoviesDetails : Fragment() {
 
 
-    lateinit var binding: FragmentMoviesDetailsBinding
+    private var _binding: FragmentMoviesDetailsBinding? = null
+    private val binding get() = _binding!!
     private var listener: ClickListener? = null
 
     override fun onCreateView(
@@ -20,7 +20,7 @@ class FragmentMoviesDetails : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View?{
-        binding = FragmentMoviesDetailsBinding.inflate(inflater, container, false)
+        _binding = FragmentMoviesDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -36,6 +36,11 @@ class FragmentMoviesDetails : Fragment() {
         if (activity is ClickListener) {
             this.listener = activity as ClickListener
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     override fun onDetach() {

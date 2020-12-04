@@ -10,7 +10,8 @@ import com.stopkaaaa.androidacademyproject.databinding.FragmentMoviesListBinding
 
 class FragmentMoviesList: Fragment() {
 
-    lateinit var binding: FragmentMoviesListBinding
+    private var _binding: FragmentMoviesListBinding? = null
+    private val binding get() = _binding!!
     private var listener: ClickListener? = null
 
     override fun onCreateView(
@@ -18,7 +19,7 @@ class FragmentMoviesList: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View?{
-        binding = FragmentMoviesListBinding.inflate(inflater, container, false)
+        _binding = FragmentMoviesListBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -44,6 +45,11 @@ class FragmentMoviesList: Fragment() {
         if (activity is ClickListener) {
             this.listener = activity as ClickListener
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     override fun onDetach() {

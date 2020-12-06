@@ -14,10 +14,9 @@ class ActorListAdapter() : RecyclerView.Adapter<ActorViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActorViewHolder {
         val binding = ViewHolderActorBinding
             .inflate(LayoutInflater.from(parent.context), parent, false)
-        val holder: ActorViewHolder = ActorViewHolder(binding)
+        val holder = ActorViewHolder(binding)
         holder.itemView.layoutParams.width = ((actorsRecyclerView.measuredWidth -
-                parent.context.resources.displayMetrics.density * 24.0 ) / 4).toInt()
-
+                parent.context.resources.displayMetrics.density * 24.0) / 4.0).toInt()
         return holder
     }
 
@@ -40,7 +39,8 @@ class ActorListAdapter() : RecyclerView.Adapter<ActorViewHolder>() {
 
 }
 
-class ActorViewHolder(private val binding: ViewHolderActorBinding) : RecyclerView.ViewHolder(binding.root) {
+class ActorViewHolder(private val binding: ViewHolderActorBinding) :
+    RecyclerView.ViewHolder(binding.root) {
     fun onBind(actor: Actor) {
         binding.actorName.text = actor.name
         binding.actorPhoto.setImageResource(actor.photo)

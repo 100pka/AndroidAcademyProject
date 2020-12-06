@@ -3,13 +3,12 @@ package com.stopkaaaa.androidacademyproject
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import kotlin.math.log
+import com.stopkaaaa.androidacademyproject.data.models.Movie
 
-class MainActivity : AppCompatActivity(), ClickListener {
+class MainActivity : AppCompatActivity(), MovieClickListener {
 
     private val moviesList = FragmentMoviesList()
 
-    private val moviesDetails = FragmentMoviesDetails()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,10 +37,10 @@ class MainActivity : AppCompatActivity(), ClickListener {
         Log.i("MainActivity", "backStackEntryCount: ${supportFragmentManager.backStackEntryCount}")
     }
 
-    override fun movieClicked() {
+    override fun movieClicked(movieIndex: Int) {
         supportFragmentManager.beginTransaction()
             .apply {
-                add(R.id.fragments_container, moviesDetails)
+                add(R.id.fragments_container, FragmentMoviesDetails.newInstance(movieIndex))
                 addToBackStack("movieDetails")
                 commit()
             }

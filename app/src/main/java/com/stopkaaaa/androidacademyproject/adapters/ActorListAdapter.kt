@@ -3,6 +3,7 @@ package com.stopkaaaa.androidacademyproject.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.stopkaaaa.androidacademyproject.data.models.Actor
 import com.stopkaaaa.androidacademyproject.databinding.ViewHolderActorBinding
 
@@ -43,6 +44,8 @@ class ActorViewHolder(private val binding: ViewHolderActorBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun onBind(actor: Actor) {
         binding.actorName.text = actor.name
-        binding.actorPhoto.setImageResource(actor.photo)
+        Glide.with(binding.root.context)
+            .load(actor.picture)
+            .into(binding.actorPhoto)
     }
 }

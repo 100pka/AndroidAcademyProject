@@ -6,12 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.whenCreated
+import androidx.lifecycle.whenStarted
+import com.bumptech.glide.Glide
 import com.stopkaaaa.androidacademyproject.adapters.ActorListAdapter
 import com.stopkaaaa.androidacademyproject.adapters.ActorListItemDecorator
 import com.stopkaaaa.androidacademyproject.adapters.MovieListItemDecoration
 import com.stopkaaaa.androidacademyproject.data.models.Movie
+import com.stopkaaaa.androidacademyproject.data.models.loadMovies
 import com.stopkaaaa.androidacademyproject.databinding.FragmentMoviesDetailsBinding
 import com.stopkaaaa.androidacademyproject.domain.MoviesDataSource
+import kotlinx.coroutines.launch
 
 class FragmentMoviesDetails : Fragment() {
 
@@ -21,11 +27,21 @@ class FragmentMoviesDetails : Fragment() {
     private var listenerMovie: MovieClickListener? = null
     lateinit var movie: Movie
 
+    private var moviesList: List<Movie>? = null
+
+    init {
+        lifecycleScope.launch{
+            whenCreated {
+                moviesList = context?.let { loadMovies(it) }
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val bundle: Bundle? = this.arguments
         if (bundle != null) {
-            movie = MoviesDataSource().getMovies()[bundle.getInt("Movie")]
+            movie = moviesList?.get(bundle.getInt("Movie"))!!
         }
     }
 
@@ -52,19 +68,24 @@ class FragmentMoviesDetails : Fragment() {
         )
 
         val adapter: ActorListAdapter = ActorListAdapter()
-        adapter.bindActors(movie.actorsList)
+        adapter.bindActors(movie.actors)
         binding.actorsRv.adapter = adapter
     }
 
     private fun bindMovie() {
         binding.movieTitle.text = movie.title
-        binding.genre.text = movie.genre
-        binding.ageLimit.text = "${movie.ageLimit}+"
-        binding.backgroundPoster.setImageResource(movie.posterBig)
-        binding.reviewsCount.text = "${movie.reviewsCount} reviews"
-        binding.rating.rating = movie.rating.toFloat()
-        binding.storylineBody.text = movie.storyLine
-
+        binding.genre.text = movie.genres.toString()
+        Glide.with(binding.root.context)
+            .load(movie.backdrop)
+            .into(binding.backgroundPoster)
+        binding.reviewsCount.text = "${movie.votes} reviews"
+        binding.rating.rating = movie.ratings
+        binding.storylineBody.text = movie.overview
+        if (movie.adult) {
+            binding.ageLimit.text = "16+"
+        } else {
+            binding.ageLimit.text = "13+"
+        }
     }
 
     override fun onAttach(context: Context) {

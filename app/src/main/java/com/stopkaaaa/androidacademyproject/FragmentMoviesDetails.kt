@@ -20,6 +20,8 @@ import com.stopkaaaa.androidacademyproject.databinding.FragmentMoviesDetailsBind
 import com.stopkaaaa.androidacademyproject.domain.MoviesDataSource
 import kotlinx.coroutines.launch
 
+const val MOVIE_TAG = "Movie"
+
 class FragmentMoviesDetails : Fragment() {
 
 
@@ -52,27 +54,29 @@ class FragmentMoviesDetails : Fragment() {
 
         val bundle: Bundle? = this.arguments
         lifecycleScope.launch {
-            movie = context?.let { bundle?.getInt("Movie")?.let { it1 -> getMovieById(it, it1) } }
+            movie = context?.let { bundle?.getInt(MOVIE_TAG)?.let { it1 -> getMovieById(it, it1) } }
             bindMovie()
         }
     }
 
     private fun bindMovie() {
-        binding.movieTitle.text = movie?.title ?: "Error while loading movie"
+        binding.movieTitle.text = movie?.title ?: resources.getString(R.string.error_loading_title)
         binding.genre.text = movie?.genres.toString()
             .subSequence(1, movie?.genres.toString().length - 1)
-        Glide.with(binding.root.context)
-            .load(movie?.backdrop)
-            .placeholder(R.drawable.backdrop_placeholder)
-            .dontAnimate()
-            .into(binding.backgroundPoster)
-        binding.reviewsCount.text = "${movie?.votes} reviews"
+        context?.let {
+            Glide.with(it)
+                .load(movie?.backdrop)
+                .placeholder(R.drawable.backdrop_placeholder)
+                .dontAnimate()
+                .into(binding.backgroundPoster)
+        }
+        binding.reviewsCount.text = resources.getString(R.string.reviews, movie?.votes)
         binding.rating.rating = movie?.ratings?.div(2) ?: Float.MIN_VALUE
         binding.storylineBody.text = movie?.overview
         if (movie?.adult == true) {
-            binding.ageLimit.text = "16+"
+            binding.ageLimit.text = resources.getString(R.string.age_adult)
         } else {
-            binding.ageLimit.text = "13+"
+            binding.ageLimit.text = resources.getString(R.string.age_non_adult)
         }
         val adapter: ActorListAdapter = ActorListAdapter()
         movie?.let { adapter.bindActors(it.actors) }
@@ -101,7 +105,7 @@ class FragmentMoviesDetails : Fragment() {
         fun newInstance(movieIndex: Int): FragmentMoviesDetails {
             return FragmentMoviesDetails().apply {
                 arguments = Bundle().apply {
-                    putInt("Movie", movieIndex)
+                    putInt(MOVIE_TAG, movieIndex)
                 }
             }
         }

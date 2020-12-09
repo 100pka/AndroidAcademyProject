@@ -53,11 +53,11 @@ class MovieViewHolder(private val binding: ViewHolderMovieBinding) :
         binding.movie1Title.text = movie.title
         binding.movie1Genre.text = movie.genres.toString()
             .subSequence(1, movie.genres.toString().length-1)
-        binding.movie1Duration.text = "${movie.runtime} min"
+        binding.movie1Duration.text = binding.root.resources.getString(R.string.duration, movie.runtime)
         if (movie.adult) {
-            binding.movie1AgeLimit.text = "16+"
+            binding.movie1AgeLimit.text = binding.root.resources.getString(R.string.age_adult)
         } else {
-            binding.movie1AgeLimit.text = "13+"
+            binding.movie1AgeLimit.text = binding.root.resources.getString(R.string.age_non_adult)
         }
         Glide.with(binding.root)
             .load(movie.poster)
@@ -88,7 +88,7 @@ class MovieViewHolder(private val binding: ViewHolderMovieBinding) :
             })
             .error(R.drawable.background_poster_gradient)
             .into(binding.movie1Poster)
-        binding.movie1ReviewsCount.text = "${movie.votes} reviews"
+        binding.movie1ReviewsCount.text = binding.root.resources.getString(R.string.reviews, movie.votes)
         binding.movie1Rating.rating = movie.ratings/2
     }
 

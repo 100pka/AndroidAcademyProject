@@ -44,29 +44,30 @@ class FragmentMoviesDetails : Fragment() {
             listenerMovie?.backPressed()
         }
 
+        binding.actorsRv.addItemDecoration(
+            ActorListItemDecorator(
+                resources.getDimension(R.dimen.margin_8).toInt()
+            )
+        )
+
         val bundle: Bundle? = this.arguments
         lifecycleScope.launch {
             movie = context?.let { bundle?.getInt("Movie")?.let { it1 -> getMovieById(it, it1) } }
             bindMovie()
         }
-
-        binding.actorsRv.addItemDecoration(
-            ActorListItemDecorator(
-                resources.getDimension(R.dimen.margin_8).toInt())
-        )
     }
 
     private fun bindMovie() {
         binding.movieTitle.text = movie?.title ?: "Error while loading movie"
         binding.genre.text = movie?.genres.toString()
-            .subSequence(1, movie?.genres.toString().length-1)
+            .subSequence(1, movie?.genres.toString().length - 1)
         Glide.with(binding.root.context)
             .load(movie?.backdrop)
             .placeholder(R.drawable.backdrop_placeholder)
             .dontAnimate()
             .into(binding.backgroundPoster)
         binding.reviewsCount.text = "${movie?.votes} reviews"
-        binding.rating.rating = movie?.ratings?.div(2) ?:0.0.toFloat()
+        binding.rating.rating = movie?.ratings?.div(2) ?: Float.MIN_VALUE
         binding.storylineBody.text = movie?.overview
         if (movie?.adult == true) {
             binding.ageLimit.text = "16+"
@@ -105,5 +106,4 @@ class FragmentMoviesDetails : Fragment() {
             }
         }
     }
-
 }

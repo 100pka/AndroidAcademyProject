@@ -41,6 +41,7 @@ class FragmentMoviesList : Fragment() {
             )
         )
         val adapter = listenerMovie?.let { MovieListAdapter(it) }
+        binding.movieListRv.adapter = adapter
 
         lifecycleScope.launch {
             val moviesList = context?.let { loadMovies(it) }
@@ -50,7 +51,6 @@ class FragmentMoviesList : Fragment() {
             binding.movieListRv.visibility = View.VISIBLE
         }
 
-        binding.movieListRv.adapter = adapter
     }
 
 
@@ -70,6 +70,4 @@ class FragmentMoviesList : Fragment() {
         super.onDetach()
         listenerMovie = null
     }
-
-
 }

@@ -75,14 +75,10 @@ internal suspend fun loadMovies(context: Context): List<Movie> = withContext(Dis
     parseMovies(data, genresMap, actorsMap)
 }
 
-internal suspend fun getMovieById(context: Context, id: Int): Movie? {
+internal suspend fun getMovieById(context: Context, id: Int): Movie {
     val moviesList = loadMovies(context)
-    for (movie in moviesList) {
-        if (movie.id == id) {
-            return movie
-        }
-    }
-    return null
+    val movie: List<Movie> = moviesList.filter { it.id == id }
+    return movie[0]
 }
 
 internal fun parseMovies(

@@ -4,7 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.stopkaaaa.androidacademyproject.MovieClickListener
+import com.stopkaaaa.androidacademyproject.R
 import com.stopkaaaa.androidacademyproject.data.models.Movie
 import com.stopkaaaa.androidacademyproject.databinding.ViewHolderMovieBinding
 
@@ -22,7 +24,7 @@ class MovieListAdapter(private val movieClickListener: MovieClickListener) :
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         holder.onBind(movies[position])
         holder.itemView.setOnClickListener {
-            movieClickListener.movieClicked(position)
+            movieClickListener.movieClicked(movies[position].id)
         }
     }
 
@@ -43,17 +45,21 @@ class MovieViewHolder(private val binding: ViewHolderMovieBinding) :
     fun onBind(movie: Movie) {
         binding.movie1Title.text = movie.title
         binding.movie1Genre.text = movie.genres.toString()
+            .subSequence(1, movie.genres.toString().length-1)
         binding.movie1Duration.text = "${movie.runtime} min"
         if (movie.adult) {
             binding.movie1AgeLimit.text = "16+"
         } else {
             binding.movie1AgeLimit.text = "13+"
         }
-        Glide.with(binding.root.context)
+        Glide.with(binding.root)
             .load(movie.poster)
+            .apply(RequestOptions().dontTransform())
+            .placeholder(R.drawable.ic_star)
+            .error(R.drawable.ic_star_off)
             .into(binding.movie1Poster)
         binding.movie1ReviewsCount.text = "${movie.votes} reviews"
-        binding.movie1Rating.rating = movie.ratings
+        binding.movie1Rating.rating = movie.ratings/2
     }
 
 }

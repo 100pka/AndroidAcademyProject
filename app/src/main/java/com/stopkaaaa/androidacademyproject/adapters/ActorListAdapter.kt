@@ -44,7 +44,7 @@ class ActorViewHolder(private val binding: ViewHolderActorBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun onBind(actor: Actor) {
         binding.actorName.text = actor.name
-        Glide.with(binding.root.context)
+        Glide.with(binding.root)
             .load(actor.picture)
             .into(binding.actorPhoto)
     }

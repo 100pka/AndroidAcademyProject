@@ -41,13 +41,12 @@ class FragmentMoviesList : Fragment() {
         val adapter = listenerMovie?.let { MovieListAdapter(it) }
 
         lifecycleScope.launch {
-            val getMoviesTask = async {
-                context?.let { loadMovies(it) }
-            }
-            val moviesList = getMoviesTask.await()
+            val moviesList = context?.let { loadMovies(it) }
             adapter?.bindMovies(moviesList)
-            binding.movieListRv.adapter = adapter
+            adapter?.notifyDataSetChanged()
         }
+        
+        binding.movieListRv.adapter = adapter
     }
 
 

@@ -14,6 +14,7 @@ import com.stopkaaaa.androidacademyproject.adapters.ActorListAdapter
 import com.stopkaaaa.androidacademyproject.adapters.ActorListItemDecorator
 import com.stopkaaaa.androidacademyproject.adapters.MovieListItemDecoration
 import com.stopkaaaa.androidacademyproject.data.models.Movie
+import com.stopkaaaa.androidacademyproject.data.models.getMovieById
 import com.stopkaaaa.androidacademyproject.data.models.loadMovies
 import com.stopkaaaa.androidacademyproject.databinding.FragmentMoviesDetailsBinding
 import com.stopkaaaa.androidacademyproject.domain.MoviesDataSource
@@ -25,25 +26,7 @@ class FragmentMoviesDetails : Fragment() {
     private var _binding: FragmentMoviesDetailsBinding? = null
     private val binding get() = _binding!!
     private var listenerMovie: MovieClickListener? = null
-    lateinit var movie: Movie
-
-    private var moviesList: List<Movie>? = null
-
-    init {
-        lifecycleScope.launch{
-            whenCreated {
-                moviesList = context?.let { loadMovies(it) }
-            }
-        }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val bundle: Bundle? = this.arguments
-        if (bundle != null) {
-            movie = moviesList?.get(bundle.getInt("Movie"))!!
-        }
-    }
+    private var movie: Movie? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,32 +43,38 @@ class FragmentMoviesDetails : Fragment() {
         binding.back.setOnClickListener {
             listenerMovie?.backPressed()
         }
-        bindMovie()
+
+        val bundle: Bundle? = this.arguments
+        lifecycleScope.launch {
+            movie = context?.let { bundle?.getInt("Movie")?.let { it1 -> getMovieById(it, it1) } }
+            bindMovie()
+        }
 
         binding.actorsRv.addItemDecoration(
             ActorListItemDecorator(
                 resources.getDimension(R.dimen.margin_8).toInt())
         )
-
-        val adapter: ActorListAdapter = ActorListAdapter()
-        adapter.bindActors(movie.actors)
-        binding.actorsRv.adapter = adapter
     }
 
     private fun bindMovie() {
-        binding.movieTitle.text = movie.title
-        binding.genre.text = movie.genres.toString()
+        binding.movieTitle.text = movie?.title ?: "Error while loading movie"
+        binding.genre.text = movie?.genres.toString()
+            .subSequence(1, movie?.genres.toString().length-1)
         Glide.with(binding.root.context)
-            .load(movie.backdrop)
+            .load(movie?.backdrop)
             .into(binding.backgroundPoster)
-        binding.reviewsCount.text = "${movie.votes} reviews"
-        binding.rating.rating = movie.ratings
-        binding.storylineBody.text = movie.overview
-        if (movie.adult) {
+        binding.reviewsCount.text = "${movie?.votes} reviews"
+        binding.rating.rating = movie?.ratings?.div(2) ?:0.0.toFloat()
+        binding.storylineBody.text = movie?.overview
+        if (movie?.adult == true) {
             binding.ageLimit.text = "16+"
         } else {
             binding.ageLimit.text = "13+"
         }
+        val adapter: ActorListAdapter = ActorListAdapter()
+        movie?.let { adapter.bindActors(it.actors) }
+        binding.actorsRv.adapter = adapter
+        adapter.notifyDataSetChanged()
     }
 
     override fun onAttach(context: Context) {

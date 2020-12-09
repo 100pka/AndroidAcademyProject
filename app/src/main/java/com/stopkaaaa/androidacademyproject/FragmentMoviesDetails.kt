@@ -62,6 +62,8 @@ class FragmentMoviesDetails : Fragment() {
             .subSequence(1, movie?.genres.toString().length-1)
         Glide.with(binding.root.context)
             .load(movie?.backdrop)
+            .placeholder(R.drawable.backdrop_placeholder)
+            .dontAnimate()
             .into(binding.backgroundPoster)
         binding.reviewsCount.text = "${movie?.votes} reviews"
         binding.rating.rating = movie?.ratings?.div(2) ?:0.0.toFloat()

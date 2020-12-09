@@ -1,10 +1,12 @@
 package com.stopkaaaa.androidacademyproject
 
 import android.content.Context
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 
@@ -44,8 +46,10 @@ class FragmentMoviesList : Fragment() {
             val moviesList = context?.let { loadMovies(it) }
             adapter?.bindMovies(moviesList)
             adapter?.notifyDataSetChanged()
+            binding.progressBar.visibility = View.GONE
+            binding.movieListRv.visibility = View.VISIBLE
         }
-        
+
         binding.movieListRv.adapter = adapter
     }
 

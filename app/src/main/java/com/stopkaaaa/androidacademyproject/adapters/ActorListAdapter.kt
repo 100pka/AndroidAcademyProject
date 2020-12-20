@@ -19,7 +19,7 @@ class ActorListAdapter() : RecyclerView.Adapter<ActorViewHolder>() {
             .inflate(LayoutInflater.from(parent.context), parent, false)
         val holder = ActorViewHolder(binding)
         holder.itemView.layoutParams.width = ((actorsRecyclerView.measuredWidth -
-                parent.context.resources.displayMetrics.density * ACTORS_MARGIN * 3) /
+                parent.context.resources.displayMetrics.density * ACTORS_MARGIN * (ACTORS_COUNT_ON_SCREEN - 1)) /
                 ACTORS_COUNT_ON_SCREEN).toInt()
         return holder
     }

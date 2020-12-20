@@ -13,19 +13,22 @@ import com.stopkaaaa.androidacademyproject.data.models.Movie
 import com.stopkaaaa.androidacademyproject.databinding.FragmentMoviesDetailsBinding
 import com.stopkaaaa.androidacademyproject.domain.MoviesDataSource
 
+private const val MOVIE_KEY = "Movie"
+
 class FragmentMoviesDetails : Fragment() {
 
 
     private var _binding: FragmentMoviesDetailsBinding? = null
     private val binding get() = _binding!!
     private var listenerMovie: MovieClickListener? = null
-    lateinit var movie: Movie
+    private var movie: Movie? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val bundle: Bundle? = this.arguments
         if (bundle != null) {
-            movie = MoviesDataSource().getMovies()[bundle.getInt("Movie")]
+            val movieID = bundle.getInt(MOVIE_KEY)
+            movie = MoviesDataSource().getMovies().find { it.id == movieID }
         }
     }
 
@@ -52,25 +55,27 @@ class FragmentMoviesDetails : Fragment() {
         )
 
         val adapter: ActorListAdapter = ActorListAdapter()
-        adapter.bindActors(movie.actorsList)
+        movie?.actorsList?.let { adapter.bindActors(it) }
         binding.actorsRv.adapter = adapter
     }
 
     private fun bindMovie() {
-        binding.movieTitle.text = movie.title
-        binding.genre.text = movie.genre
-        binding.ageLimit.text = "${movie.ageLimit}+"
-        binding.backgroundPoster.setImageResource(movie.posterBig)
-        binding.reviewsCount.text = "${movie.reviewsCount} reviews"
-        binding.rating.rating = movie.rating.toFloat()
-        binding.storylineBody.text = movie.storyLine
-
+        binding.movieTitle.text = movie?.title
+        binding.genre.text = movie?.genre
+        binding.ageLimit.text = binding.root.resources.getString(R.string.age_limit, movie?.ageLimit)
+        movie?.posterBig?.let { binding.backgroundPoster.setImageResource(it) }
+        binding.reviewsCount.text = binding.root.resources.getString(R.string.reviews, movie?.reviewsCount)
+        binding.rating.rating = (movie?.rating?.toFloat() ?: 0) as Float
+        binding.storylineBody.text = movie?.storyLine
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if (activity is MovieClickListener) {
             this.listenerMovie = activity as MovieClickListener
+        }
+        else {
+            throw ClassNotFoundException(getString(R.string.back_btn_listener_exception))
         }
     }
 
@@ -85,10 +90,10 @@ class FragmentMoviesDetails : Fragment() {
     }
 
     companion object {
-        fun newInstance(movieIndex: Int): FragmentMoviesDetails {
+        fun newInstance(movieID: Int): FragmentMoviesDetails {
             return FragmentMoviesDetails().apply {
                 arguments = Bundle().apply {
-                    putInt("Movie", movieIndex)
+                    putInt(MOVIE_KEY, movieID)
                 }
             }
         }

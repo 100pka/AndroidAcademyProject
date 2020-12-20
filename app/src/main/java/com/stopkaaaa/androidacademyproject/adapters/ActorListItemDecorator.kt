@@ -8,7 +8,6 @@ class ActorListItemDecorator(private val margin: Int) : RecyclerView.ItemDecorat
     override fun getItemOffsets(outRect: Rect, view: View,
                                 parent: RecyclerView, state: RecyclerView.State) {
         with(outRect) {
-            bottom = 2 * margin
             right = if (parent.getChildAdapterPosition(view)  == state.itemCount - 1) {
                 0
             } else {
@@ -16,6 +15,7 @@ class ActorListItemDecorator(private val margin: Int) : RecyclerView.ItemDecorat
             }
             top = 0
             left = 0
+            bottom = 0
         }
     }
 }

@@ -6,17 +6,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.stopkaaaa.androidacademyproject.data.models.Actor
 import com.stopkaaaa.androidacademyproject.databinding.ViewHolderActorBinding
 
+const val ACTORS_MARGIN = 8
+const val ACTORS_COUNT_ON_SCREEN = 4
+
 class ActorListAdapter() : RecyclerView.Adapter<ActorViewHolder>() {
 
     lateinit var actorsRecyclerView: RecyclerView
-    private var actors: List<Actor> = listOf()
+    private var actors: MutableList<Actor> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActorViewHolder {
         val binding = ViewHolderActorBinding
             .inflate(LayoutInflater.from(parent.context), parent, false)
         val holder = ActorViewHolder(binding)
         holder.itemView.layoutParams.width = ((actorsRecyclerView.measuredWidth -
-                parent.context.resources.displayMetrics.density * 24.0) / 4.0).toInt()
+                parent.context.resources.displayMetrics.density * ACTORS_MARGIN * 3) /
+                ACTORS_COUNT_ON_SCREEN).toInt()
         return holder
     }
 
@@ -34,7 +38,9 @@ class ActorListAdapter() : RecyclerView.Adapter<ActorViewHolder>() {
     }
 
     fun bindActors(newList: List<Actor>) {
-        actors = newList
+        actors.clear()
+        actors.addAll(newList)
+        notifyDataSetChanged()
     }
 
 }

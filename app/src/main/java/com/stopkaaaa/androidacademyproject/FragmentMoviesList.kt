@@ -10,6 +10,7 @@ import com.stopkaaaa.androidacademyproject.adapters.MovieListItemDecoration
 import com.stopkaaaa.androidacademyproject.adapters.MovieListAdapter
 import com.stopkaaaa.androidacademyproject.databinding.FragmentMoviesListBinding
 import com.stopkaaaa.androidacademyproject.domain.MoviesDataSource
+import java.lang.Exception
 
 class FragmentMoviesList: Fragment() {
 
@@ -44,6 +45,9 @@ class FragmentMoviesList: Fragment() {
         super.onAttach(context)
         if (activity is MovieClickListener) {
             this.listenerMovie = activity as MovieClickListener
+        }
+        else {
+            throw ClassNotFoundException(getString(R.string.movie_item_listener_exception))
         }
     }
 

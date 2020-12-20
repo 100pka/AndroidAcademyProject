@@ -7,6 +7,7 @@ class MoviesDataSource {
     fun getMovies(): List<Movie> {
         return listOf(
             Movie(
+                0,
                 "Dolittle",
                 "Adventure, Comedy, Family",
                 13,
@@ -20,6 +21,7 @@ class MoviesDataSource {
                 ActorsDataSource().getDolittleActors()
             ),
             Movie(
+                1,
                 "Underwater",
                 "Action, Horror, Sci-Fi",
                 18,
@@ -33,6 +35,7 @@ class MoviesDataSource {
                 ActorsDataSource().getUnderwaterActors()
             ),
             Movie(
+                2,
                 "The Call Of The Wild",
                 "Adventure, Drama, Family",
                 13,
@@ -46,6 +49,7 @@ class MoviesDataSource {
                 ActorsDataSource().getTheCallOfTheWildActors()
             ),
             Movie(
+                3,
                 "Last Christmas",
                 "Comedy, Drama, Romance",
                 13,
@@ -59,6 +63,7 @@ class MoviesDataSource {
                 ActorsDataSource().getLastChristmasActors()
             ),
             Movie(
+                4,
                 "The Invisible Guest",
                 "Crime, Drama, Mystery",
                 16,
@@ -72,6 +77,7 @@ class MoviesDataSource {
                 ActorsDataSource().getInvisibleGuestActors()
             ),
             Movie(
+                5,
                 "Fantasy Island",
                 "Action, Adventure, Fantasy",
                 16,

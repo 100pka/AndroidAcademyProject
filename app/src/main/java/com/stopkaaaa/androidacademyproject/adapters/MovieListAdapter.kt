@@ -20,7 +20,7 @@ import com.stopkaaaa.androidacademyproject.databinding.ViewHolderMovieBinding
 class MovieListAdapter(private val movieClickListener: MovieClickListener) :
     RecyclerView.Adapter<MovieViewHolder>() {
 
-    private var movies: List<Movie> = listOf()
+    private var movies: MutableList<Movie> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val binding = ViewHolderMovieBinding
@@ -41,7 +41,9 @@ class MovieListAdapter(private val movieClickListener: MovieClickListener) :
 
     fun bindMovies(newList: List<Movie>?) {
         if (newList != null) {
-            movies = newList
+            movies.clear()
+            movies.addAll(newList)
+            notifyDataSetChanged()
         }
     }
 }

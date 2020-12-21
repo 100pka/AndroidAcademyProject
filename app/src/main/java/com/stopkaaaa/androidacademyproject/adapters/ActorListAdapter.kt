@@ -11,7 +11,7 @@ import com.stopkaaaa.androidacademyproject.databinding.ViewHolderActorBinding
 class ActorListAdapter() : RecyclerView.Adapter<ActorViewHolder>() {
 
     lateinit var actorsRecyclerView: RecyclerView
-    private var actors: List<Actor> = listOf()
+    private var actors: MutableList<Actor> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActorViewHolder {
         val binding = ViewHolderActorBinding
@@ -36,7 +36,9 @@ class ActorListAdapter() : RecyclerView.Adapter<ActorViewHolder>() {
     }
 
     fun bindActors(newList: List<Actor>) {
-        actors = newList
+        actors.clear()
+        actors.addAll(newList)
+        notifyDataSetChanged()
     }
 
 }

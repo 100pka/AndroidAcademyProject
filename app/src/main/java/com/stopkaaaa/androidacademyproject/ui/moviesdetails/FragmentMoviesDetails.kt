@@ -1,4 +1,4 @@
-package com.stopkaaaa.androidacademyproject
+package com.stopkaaaa.androidacademyproject.ui.moviesdetails
 
 import android.content.Context
 import android.os.Bundle
@@ -10,11 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 
 import com.bumptech.glide.Glide
+import com.stopkaaaa.androidacademyproject.R
 import com.stopkaaaa.androidacademyproject.adapters.ActorListAdapter
 import com.stopkaaaa.androidacademyproject.adapters.ActorListItemDecorator
 import com.stopkaaaa.androidacademyproject.data.models.Movie
 import com.stopkaaaa.androidacademyproject.data.models.getMovieById
 import com.stopkaaaa.androidacademyproject.databinding.FragmentMoviesDetailsBinding
+import com.stopkaaaa.androidacademyproject.ui.MovieClickListener
 import kotlinx.coroutines.launch
 
 const val MOVIE_TAG = "Movie"

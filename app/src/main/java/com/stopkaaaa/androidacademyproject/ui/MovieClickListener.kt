@@ -1,4 +1,4 @@
-package com.stopkaaaa.androidacademyproject
+package com.stopkaaaa.androidacademyproject.ui
 
 import com.stopkaaaa.androidacademyproject.data.models.Movie
 

@@ -1,4 +1,4 @@
-package com.stopkaaaa.androidacademyproject
+package com.stopkaaaa.androidacademyproject.ui.movieslist
 
 import android.content.Context
 import android.os.Bundle
@@ -7,16 +7,24 @@ import android.view.View
 import android.view.ViewGroup
 
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import com.stopkaaaa.androidacademyproject.R
 
 import com.stopkaaaa.androidacademyproject.adapters.MovieListItemDecoration
 import com.stopkaaaa.androidacademyproject.adapters.MovieListAdapter
 import com.stopkaaaa.androidacademyproject.data.models.loadMovies
 import com.stopkaaaa.androidacademyproject.databinding.FragmentMoviesListBinding
+import com.stopkaaaa.androidacademyproject.ui.MovieClickListener
 import kotlinx.coroutines.*
 
 
 class FragmentMoviesList : Fragment() {
+
+    lateinit var viewModel: MoviesListViewModel
 
     private var _binding: FragmentMoviesListBinding? = null
     private val binding get() = _binding!!
@@ -28,6 +36,7 @@ class FragmentMoviesList : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMoviesListBinding.inflate(inflater, container, false)
+        viewModel = ViewModelProvider(this).get(MoviesListViewModel::class.java)
         return binding.root
     }
 

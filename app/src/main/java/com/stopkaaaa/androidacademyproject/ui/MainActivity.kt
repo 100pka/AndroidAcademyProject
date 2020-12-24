@@ -1,8 +1,11 @@
-package com.stopkaaaa.androidacademyproject
+package com.stopkaaaa.androidacademyproject.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.stopkaaaa.androidacademyproject.FragmentMoviesDetails
+import com.stopkaaaa.androidacademyproject.ui.movieslist.FragmentMoviesList
+import com.stopkaaaa.androidacademyproject.R
 
 class MainActivity : AppCompatActivity(), MovieClickListener {
 

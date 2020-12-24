@@ -86,7 +86,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.stopkaaaa.androidacademyproject.RatingBarSvg
+    <com.stopkaaaa.androidacademyproject.ui.RatingBarSvg
         android:id="@+id/movie_1_rating"
         style="@style/MoviesRatingBar"
         android:layout_width="wrap_content"

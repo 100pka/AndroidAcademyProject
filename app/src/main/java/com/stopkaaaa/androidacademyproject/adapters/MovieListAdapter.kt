@@ -8,7 +8,8 @@ import com.stopkaaaa.androidacademyproject.R
 import com.stopkaaaa.androidacademyproject.data.models.Movie
 import com.stopkaaaa.androidacademyproject.databinding.ViewHolderMovieBinding
 
-class MovieListAdapter(private val movieClickListener: MovieClickListener) : RecyclerView.Adapter<MovieViewHolder>() {
+class MovieListAdapter(private val movieClickListener: MovieClickListener) :
+    RecyclerView.Adapter<MovieViewHolder>() {
 
     private var movies: MutableList<Movie> = mutableListOf()
 
@@ -36,15 +37,19 @@ class MovieListAdapter(private val movieClickListener: MovieClickListener) : Rec
     }
 }
 
-class MovieViewHolder(private val binding: ViewHolderMovieBinding) : RecyclerView.ViewHolder(binding.root) {
+class MovieViewHolder(private val binding: ViewHolderMovieBinding) :
+    RecyclerView.ViewHolder(binding.root) {
 
     fun onBind(movie: Movie) {
         binding.movie1Title.text = movie.title
         binding.movie1Genre.text = movie.genre
-        binding.movie1Duration.text = binding.root.resources.getString(R.string.duration, movie.duration)
-        binding.movie1AgeLimit.text = binding.root.resources.getString(R.string.age_limit, movie.ageLimit)
+        binding.movie1Duration.text =
+            itemView.context.resources.getString(R.string.duration, movie.duration)
+        binding.movie1AgeLimit.text =
+            itemView.context.resources.getString(R.string.age_limit, movie.ageLimit)
         binding.movie1Poster.setImageResource(movie.posterSmall)
-        binding.movie1ReviewsCount.text = binding.root.resources.getString(R.string.reviews, movie.reviewsCount)
+        binding.movie1ReviewsCount.text =
+            itemView.context.resources.getString(R.string.reviews, movie.reviewsCount)
         binding.movie1Rating.rating = movie.rating.toFloat()
     }
 

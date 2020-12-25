@@ -21,14 +21,14 @@ class FragmentMoviesDetails : Fragment() {
     private var _binding: FragmentMoviesDetailsBinding? = null
     private val binding get() = _binding!!
     private var listenerMovie: MovieClickListener? = null
-    private var movie: Movie? = null
+    lateinit var movie: Movie
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val bundle: Bundle? = this.arguments
         if (bundle != null) {
-            val movieID = bundle.getInt(MOVIE_KEY)
-            movie = MoviesDataSource().getMovies().find { it.id == movieID }
+            val movieId = bundle.getInt(MOVIE_KEY)
+            movie = MoviesDataSource().getMovies().find { it.id == movieId }!!
         }
     }
 
@@ -60,13 +60,13 @@ class FragmentMoviesDetails : Fragment() {
     }
 
     private fun bindMovie() {
-        binding.movieTitle.text = movie?.title
-        binding.genre.text = movie?.genre
+        binding.movieTitle.text = movie.title
+        binding.genre.text = movie.genre
         binding.ageLimit.text = binding.root.resources.getString(R.string.age_limit, movie?.ageLimit)
-        movie?.posterBig?.let { binding.backgroundPoster.setImageResource(it) }
+        movie.posterBig.run { binding.backgroundPoster.setImageResource(this) }
         binding.reviewsCount.text = binding.root.resources.getString(R.string.reviews, movie?.reviewsCount)
-        binding.rating.rating = (movie?.rating?.toFloat() ?: 0) as Float
-        binding.storylineBody.text = movie?.storyLine
+        binding.rating.rating = (movie.rating.toFloat() ?: 0) as Float
+        binding.storylineBody.text = movie.storyLine
     }
 
     override fun onAttach(context: Context) {
@@ -75,7 +75,7 @@ class FragmentMoviesDetails : Fragment() {
             this.listenerMovie = activity as MovieClickListener
         }
         else {
-            throw ClassNotFoundException(getString(R.string.back_btn_listener_exception))
+            throw IllegalArgumentException(getString(R.string.movie_listener_exception))
         }
     }
 
@@ -90,10 +90,10 @@ class FragmentMoviesDetails : Fragment() {
     }
 
     companion object {
-        fun newInstance(movieID: Int): FragmentMoviesDetails {
+        fun newInstance(movieId: Int): FragmentMoviesDetails {
             return FragmentMoviesDetails().apply {
                 arguments = Bundle().apply {
-                    putInt(MOVIE_KEY, movieID)
+                    putInt(MOVIE_KEY, movieId)
                 }
             }
         }

@@ -37,10 +37,10 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
         Log.i("MainActivity", "backStackEntryCount: ${supportFragmentManager.backStackEntryCount}")
     }
 
-    override fun movieClicked(movieIndex: Int) {
+    override fun movieClicked(movieId: Int) {
         supportFragmentManager.beginTransaction()
             .apply {
-                add(R.id.fragments_container, FragmentMoviesDetails.newInstance(movieIndex))
+                add(R.id.fragments_container, FragmentMoviesDetails.newInstance(movieId))
                 addToBackStack("movieDetails")
                 commit()
             }

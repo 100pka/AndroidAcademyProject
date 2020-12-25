@@ -34,7 +34,6 @@
     <string name="duration">%d min</string>
     <string name="reviews">%d reviews</string>
     <string name="age_limit">%d+</string>
-    <string name="movie_item_listener_exception">No listener on movie items</string>
-    <string name="back_btn_listener_exception">No listener on back button</string>
+    <string name="movie_listener_exception">Activity must implement MovieClickListener</string>
 
 </resources>

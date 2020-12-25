@@ -47,7 +47,7 @@ class FragmentMoviesList: Fragment() {
             this.listenerMovie = activity as MovieClickListener
         }
         else {
-            throw ClassNotFoundException(getString(R.string.movie_item_listener_exception))
+            throw IllegalArgumentException(getString(R.string.movie_listener_exception))
         }
     }
 

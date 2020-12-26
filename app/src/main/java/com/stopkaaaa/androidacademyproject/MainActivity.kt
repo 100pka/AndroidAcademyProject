@@ -3,7 +3,6 @@ package com.stopkaaaa.androidacademyproject
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.stopkaaaa.androidacademyproject.data.models.Movie
 
 class MainActivity : AppCompatActivity(), MovieClickListener {
 

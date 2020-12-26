@@ -5,14 +5,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+
 import com.stopkaaaa.androidacademyproject.adapters.MovieListItemDecoration
 import com.stopkaaaa.androidacademyproject.adapters.MovieListAdapter
+import com.stopkaaaa.androidacademyproject.data.models.loadMovies
 import com.stopkaaaa.androidacademyproject.databinding.FragmentMoviesListBinding
-import com.stopkaaaa.androidacademyproject.domain.MoviesDataSource
+import kotlinx.coroutines.*
 import java.lang.Exception
 
-class FragmentMoviesList: Fragment() {
+class FragmentMoviesList : Fragment() {
 
     private var _binding: FragmentMoviesListBinding? = null
     private val binding get() = _binding!!
@@ -22,7 +26,7 @@ class FragmentMoviesList: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View?{
+    ): View? {
         _binding = FragmentMoviesListBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -32,12 +36,19 @@ class FragmentMoviesList: Fragment() {
 
         binding.movieListRv.addItemDecoration(
             MovieListItemDecoration(
-            resources.getDimension(R.dimen.margin_6).toInt())
+                resources.getDimension(R.dimen.margin_6).toInt()
+            )
         )
-
         val adapter = listenerMovie?.let { MovieListAdapter(it) }
-        adapter?.bindMovies(MoviesDataSource().getMovies())
         binding.movieListRv.adapter = adapter
+
+        lifecycleScope.launch {
+            val moviesList = context?.let { loadMovies(it) }
+            adapter?.bindMovies(moviesList)
+            binding.progressBar.visibility = View.GONE
+            binding.movieListRv.visibility = View.VISIBLE
+        }
+
     }
 
 
@@ -60,5 +71,4 @@ class FragmentMoviesList: Fragment() {
         super.onDetach()
         listenerMovie = null
     }
-
 }

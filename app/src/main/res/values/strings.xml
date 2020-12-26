@@ -11,7 +11,8 @@
     <string name="mark_ruffalo">Mark\nRuffalo</string>
     <string name="chris_hemsworth">Chris\nHemsworth</string>
     <string name="back">Back</string>
-    <string name="age">13+</string>
+    <string name="age_non_adult">13+</string>
+    <string name="age_adult">16+</string>
     <string name="movies_list">Movies list</string>
     <string name="avengers_age_limit">13+</string>
     <string name="movie_list">Movies list</string>
@@ -33,6 +34,8 @@
     <string name="tenet_age_limit">16+</string>
     <string name="duration">%d min</string>
     <string name="reviews">%d reviews</string>
+    <string name="error_loading_title">Error while loading movie</string>
+    <string name="error_show_movie_details">Error while opening movie</string>
     <string name="age_limit">%d+</string>
 
 </resources>

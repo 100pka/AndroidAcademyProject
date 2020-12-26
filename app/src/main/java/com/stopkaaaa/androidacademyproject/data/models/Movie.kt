@@ -3,14 +3,13 @@ package com.stopkaaaa.androidacademyproject.data.models
 data class Movie(
     val id: Int,
     val title: String,
-    val genre: String,
-    val ageLimit: Int,
-    val duration: Int,
-    val reviewsCount: Int,
-    val rating: Int,
-    val isLiked: Boolean,
-    val posterBig: Int,
-    val posterSmall: Int,
-    val storyLine: String,
-    val actorsList: List<Actor>
+    val overview: String,
+    val poster: String,
+    val backdrop: String,
+    val ratings: Float,
+    val votes: Int,
+    val adult: Boolean,
+    val runtime: Int,
+    val genres: List<Genre>,
+    val actors: List<Actor>
 )

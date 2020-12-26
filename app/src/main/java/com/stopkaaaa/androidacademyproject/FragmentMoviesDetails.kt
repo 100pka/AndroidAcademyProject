@@ -28,7 +28,7 @@ class FragmentMoviesDetails : Fragment() {
         val bundle: Bundle? = this.arguments
         if (bundle != null) {
             val movieId = bundle.getInt(MOVIE_KEY)
-            movie = MoviesDataSource().getMovies().find { it.id == movieId }!!
+            movie = MoviesDataSource().getMovies().first { it.id == movieId }
         }
     }
 
@@ -75,7 +75,7 @@ class FragmentMoviesDetails : Fragment() {
             this.listenerMovie = activity as MovieClickListener
         }
         else {
-            throw IllegalArgumentException(getString(R.string.movie_listener_exception))
+            throw IllegalArgumentException("Activity must implement MovieClickListener")
         }
     }
 

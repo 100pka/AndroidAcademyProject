@@ -31,4 +31,8 @@
     <string name="action_adventure_fantasy">Action, Adventure, Fantasy</string>
     <string name="wonderwoman_duration">120 min</string>
     <string name="tenet_age_limit">16+</string>
+    <string name="duration">%d min</string>
+    <string name="reviews">%d reviews</string>
+    <string name="age_limit">%d+</string>
+
 </resources>

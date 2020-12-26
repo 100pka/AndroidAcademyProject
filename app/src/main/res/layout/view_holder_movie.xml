@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView android:id="@+id/movie_1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:theme="@style/Theme.MaterialComponents.DayNight.DarkActionBar"
+    app:cardBackgroundColor="@color/background"
+    app:cardCornerRadius="@dimen/corner_8"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:strokeColor="@color/stroke_line_color"
+    app:strokeWidth="@dimen/stroke_1"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/movie_list_card_background">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/movie_1_poster"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_2"
+        android:layout_marginTop="@dimen/margin_2"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/avengers_end_game_poster"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/movie_1_poster_gradient"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/background_poster_gradient"
+        app:layout_constraintBottom_toBottomOf="@+id/movie_1_poster"
+        app:layout_constraintEnd_toEndOf="@+id/movie_1_poster"
+        app:layout_constraintStart_toStartOf="@+id/movie_1_poster"
+        app:layout_constraintTop_toTopOf="@+id/movie_1_poster" />
+
+    <TextView
+        android:id="@+id/movie_1_genre"
+        style="@style/TextView.MovieListGenre"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_8"
+        android:layout_marginBottom="@dimen/margin_2"
+        android:text="@string/action_adventure_drama"
+        app:layout_constraintBottom_toTopOf="@+id/movie_1_reviews_count"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <TextView
+        android:id="@+id/movie_1_age_limit"
+        style="@style/TextView.MovieListAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_8"
+        android:layout_marginTop="@dimen/margin_8"
+        android:background="@drawable/ic_age_limit_background"
+        android:gravity="center"
+        android:text="@string/avengers_age_limit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/movie_1_like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_12"
+        android:layout_marginEnd="@dimen/margin_8"
+        android:alpha="0.75"
+        android:src="@drawable/ic_like_off"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.stopkaaaa.androidacademyproject.RatingBarSvg
+        android:id="@+id/movie_1_rating"
+        style="@style/MoviesRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/margin_8"
+        android:layout_marginStart="@dimen/margin_8"
+        android:numStars="5"
+        android:rating="4"
+        android:stepSize="1"
+        app:layout_constraintBottom_toBottomOf="@+id/movie_1_reviews_count"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/movie_1_reviews_count" />
+
+    <TextView
+        android:id="@+id/movie_1_reviews_count"
+        style="@style/TextView.MovieListReviewsCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_6"
+        android:layout_marginTop="@dimen/margin_2"
+        android:layout_marginBottom="@dimen/margin_8"
+        android:gravity="center_vertical"
+        android:text="@string/reviews_count"
+        app:layout_constraintBottom_toBottomOf="@+id/movie_1_poster"
+        app:layout_constraintStart_toEndOf="@+id/movie_1_rating" />
+
+    <TextView
+        android:id="@+id/movie_1_title"
+        style="@style/TextView.MovieListMovieTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_8"
+        android:layout_marginTop="@dimen/margin_8"
+        android:text="@string/avengers_end_game_movie_list"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/movie_1_poster" />
+
+    <TextView
+        android:id="@+id/movie_1_duration"
+        style="@style/TextView.MovieListDuration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_8"
+        android:layout_marginBottom="@dimen/margin_8"
+        android:text="@string/avengers_duration"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/movie_1_title"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

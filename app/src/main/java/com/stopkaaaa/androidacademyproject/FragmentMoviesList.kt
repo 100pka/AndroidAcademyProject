@@ -14,7 +14,7 @@ import com.stopkaaaa.androidacademyproject.adapters.MovieListAdapter
 import com.stopkaaaa.androidacademyproject.data.models.loadMovies
 import com.stopkaaaa.androidacademyproject.databinding.FragmentMoviesListBinding
 import kotlinx.coroutines.*
-
+import java.lang.Exception
 
 class FragmentMoviesList : Fragment() {
 
@@ -56,6 +56,9 @@ class FragmentMoviesList : Fragment() {
         super.onAttach(context)
         if (activity is MovieClickListener) {
             this.listenerMovie = activity as MovieClickListener
+        }
+        else {
+            throw IllegalArgumentException("Activity must implement MovieClickListener")
         }
     }
 

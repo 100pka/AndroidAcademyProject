@@ -8,6 +8,9 @@ import com.stopkaaaa.androidacademyproject.R
 import com.stopkaaaa.androidacademyproject.data.models.Actor
 import com.stopkaaaa.androidacademyproject.databinding.ViewHolderActorBinding
 
+const val ACTORS_MARGIN = 8
+const val ACTORS_COUNT_ON_SCREEN = 4
+
 class ActorListAdapter() : RecyclerView.Adapter<ActorViewHolder>() {
 
     lateinit var actorsRecyclerView: RecyclerView
@@ -18,7 +21,8 @@ class ActorListAdapter() : RecyclerView.Adapter<ActorViewHolder>() {
             .inflate(LayoutInflater.from(parent.context), parent, false)
         val holder = ActorViewHolder(binding)
         holder.itemView.layoutParams.width = ((actorsRecyclerView.measuredWidth -
-                parent.context.resources.displayMetrics.density * 24.0) / 4.0).toInt()
+                parent.context.resources.displayMetrics.density * ACTORS_MARGIN * (ACTORS_COUNT_ON_SCREEN - 1)) /
+                ACTORS_COUNT_ON_SCREEN).toInt()
         return holder
     }
 

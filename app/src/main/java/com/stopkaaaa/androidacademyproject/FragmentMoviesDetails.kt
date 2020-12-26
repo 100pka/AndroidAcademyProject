@@ -19,6 +19,8 @@ import kotlinx.coroutines.launch
 
 const val MOVIE_TAG = "Movie"
 
+private const val MOVIE_KEY = "Movie"
+
 class FragmentMoviesDetails : Fragment() {
 
 
@@ -45,8 +47,7 @@ class FragmentMoviesDetails : Fragment() {
 
         binding.actorsRv.addItemDecoration(
             ActorListItemDecorator(
-                resources.getDimension(R.dimen.margin_8).toInt()
-            )
+                resources.getDimension(R.dimen.margin_8).toInt())
         )
 
         val bundle: Bundle? = this.arguments
@@ -101,6 +102,9 @@ class FragmentMoviesDetails : Fragment() {
         if (activity is MovieClickListener) {
             this.listenerMovie = activity as MovieClickListener
         }
+        else {
+            throw IllegalArgumentException("Activity must implement MovieClickListener")
+        }
     }
 
     override fun onDestroy() {
@@ -114,12 +118,13 @@ class FragmentMoviesDetails : Fragment() {
     }
 
     companion object {
-        fun newInstance(movieID: Int): FragmentMoviesDetails {
+        fun newInstance(movieId: Int): FragmentMoviesDetails {
             return FragmentMoviesDetails().apply {
                 arguments = Bundle().apply {
-                    putInt(MOVIE_TAG, movieID)
+                    putInt(MOVIE_KEY, movieId)
                 }
             }
         }
     }
+
 }

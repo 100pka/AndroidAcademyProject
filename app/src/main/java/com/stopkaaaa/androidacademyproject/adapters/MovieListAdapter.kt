@@ -1,5 +1,6 @@
 package com.stopkaaaa.androidacademyproject.adapters
 
+
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.Target
 import com.stopkaaaa.androidacademyproject.ui.MovieClickListener
 import com.stopkaaaa.androidacademyproject.R
 import com.stopkaaaa.androidacademyproject.data.models.Movie
@@ -63,7 +65,7 @@ class MovieViewHolder(private val binding: ViewHolderMovieBinding) :
             .load(movie.poster)
             .apply(RequestOptions().dontTransform())
             .placeholder(R.drawable.background_poster_gradient)
-            .listener(object : RequestListener<Drawable> {
+            .listener(object : RequestListener<Drawable>{
                 override fun onLoadFailed(
                     e: GlideException?,
                     model: Any?,

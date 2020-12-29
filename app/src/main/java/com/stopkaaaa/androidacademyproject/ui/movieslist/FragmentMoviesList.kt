@@ -7,23 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isGone
 import androidx.core.view.isInvisible
-import androidx.core.view.isVisible
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import com.stopkaaaa.androidacademyproject.R
 
 import com.stopkaaaa.androidacademyproject.adapters.MovieListItemDecoration
 import com.stopkaaaa.androidacademyproject.adapters.MovieListAdapter
 import com.stopkaaaa.androidacademyproject.data.models.Movie
-import com.stopkaaaa.androidacademyproject.data.models.loadMovies
 import com.stopkaaaa.androidacademyproject.databinding.FragmentMoviesListBinding
 import com.stopkaaaa.androidacademyproject.ui.MovieClickListener
-import kotlinx.coroutines.*
 
 
 class FragmentMoviesList : Fragment() {

@@ -70,7 +70,7 @@ class FragmentMoviesDetails : Fragment() {
                     .into(binding.backgroundPoster)
             }
             binding.reviewsCount.text = resources.getString(R.string.reviews, it.votes)
-            binding.rating.rating = it.ratings.div(2) ?: Float.MIN_VALUE
+            binding.rating.rating = it.ratings.div(2)
             binding.storylineBody.text = it.overview
             if (it.adult) {
                 binding.ageLimit.text = resources.getString(R.string.age_adult)

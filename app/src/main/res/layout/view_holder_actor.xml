@@ -22,7 +22,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_6"
-        android:layout_marginBottom="@dimen/margin_16"
         tools:text="@string/robert_downey_jr"
         style="@style/TextView.MovieDetailsActors"
         android:gravity="top"

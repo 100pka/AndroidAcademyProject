@@ -10,10 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 
 import com.bumptech.glide.Glide
+import com.stopkaaaa.androidacademyproject.BuildConfig
 import com.stopkaaaa.androidacademyproject.R
 import com.stopkaaaa.androidacademyproject.adapters.ActorListAdapter
 import com.stopkaaaa.androidacademyproject.adapters.ActorListItemDecorator
+import com.stopkaaaa.androidacademyproject.data.models.Actor
 import com.stopkaaaa.androidacademyproject.data.models.Movie
+import com.stopkaaaa.androidacademyproject.data.net.RetrofitClient
 import com.stopkaaaa.androidacademyproject.databinding.FragmentMoviesDetailsBinding
 import com.stopkaaaa.androidacademyproject.ui.MovieClickListener
 
@@ -51,10 +54,11 @@ class FragmentMoviesDetails : Fragment() {
         )
 
         viewModel.currentMovie.observe(this.viewLifecycleOwner, this::bindMovie)
+        viewModel.actorsList.observe(this.viewLifecycleOwner, this::bindActors)
         viewModel.loadingState.observe(this.viewLifecycleOwner, this::setLoading)
 
         val bundle: Bundle? = this.arguments
-        bundle?.getInt(MOVIE_TAG)?.let { viewModel.loadMovieById(it) }
+        bundle?.getLong(MOVIE_TAG)?.let { viewModel.loadMovieById(it) }
 
     }
 
@@ -65,28 +69,30 @@ class FragmentMoviesDetails : Fragment() {
                 .subSequence(1, genres.toString().length - 1)
             context?.let { _context ->
                 Glide.with(_context)
-                    .load(movie.backdrop)
+                    .load(BuildConfig.TMDB_IMAGE_URL + movie.backdrop)
                     .placeholder(R.drawable.backdrop_placeholder)
                     .dontAnimate()
                     .into(binding.backgroundPoster)
             }
             binding.reviewsCount.text = resources.getString(R.string.reviews, votes)
-            binding.rating.rating = ratings.div(2)
+            binding.rating.rating = ratings.div(2).toFloat()
             binding.storylineBody.text = overview
             if (adult) {
                 binding.ageLimit.text = resources.getString(R.string.age_adult)
             } else {
                 binding.ageLimit.text = resources.getString(R.string.age_non_adult)
             }
+        }
+    }
 
-            if (actors.isEmpty()) {
-                binding.castTitle.visibility = View.INVISIBLE
-            } else {
-                binding.castTitle.visibility = View.VISIBLE
-                val adapter = ActorListAdapter()
-                adapter.bindActors(actors)
-                binding.actorsRv.adapter = adapter
-            }
+    private fun bindActors(actorsList: List<Actor>) {
+        if (actorsList.isEmpty()) {
+            binding.castTitle.visibility = View.INVISIBLE
+        } else {
+            binding.castTitle.visibility = View.VISIBLE
+            val adapter = ActorListAdapter()
+            adapter.bindActors(actorsList)
+            binding.actorsRv.adapter = adapter
         }
     }
 
@@ -113,10 +119,10 @@ class FragmentMoviesDetails : Fragment() {
     }
 
     companion object {
-        fun newInstance(movieID: Int): FragmentMoviesDetails {
+        fun newInstance(movieID: Long): FragmentMoviesDetails {
             return FragmentMoviesDetails().apply {
                 arguments = Bundle().apply {
-                    putInt(MOVIE_TAG, movieID)
+                    putLong(MOVIE_TAG, movieID)
                 }
             }
         }

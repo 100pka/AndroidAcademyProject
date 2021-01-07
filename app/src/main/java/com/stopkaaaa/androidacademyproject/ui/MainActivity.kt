@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity(), MovieClickListener {
         Log.i("MainActivity", "backStackEntryCount: ${supportFragmentManager.backStackEntryCount}")
     }
 
-    override fun movieClicked(movieId: Int) {
+    override fun movieClicked(movieId: Long) {
         supportFragmentManager.beginTransaction()
             .apply {
                 add(R.id.fragments_container, FragmentMoviesDetails.newInstance(movieId))

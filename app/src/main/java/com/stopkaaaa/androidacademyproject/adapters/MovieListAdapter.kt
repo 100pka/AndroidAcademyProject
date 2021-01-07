@@ -12,9 +12,11 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
+import com.stopkaaaa.androidacademyproject.BuildConfig
 import com.stopkaaaa.androidacademyproject.ui.MovieClickListener
 import com.stopkaaaa.androidacademyproject.R
 import com.stopkaaaa.androidacademyproject.data.models.Movie
+import com.stopkaaaa.androidacademyproject.data.net.RetrofitClient
 import com.stopkaaaa.androidacademyproject.databinding.ViewHolderMovieBinding
 
 class MovieListAdapter(private val movieClickListener: MovieClickListener) :
@@ -62,7 +64,7 @@ class MovieViewHolder(private val binding: ViewHolderMovieBinding) :
             binding.movie1AgeLimit.text = itemView.context.resources.getString(R.string.age_non_adult)
         }
         Glide.with(binding.root)
-            .load(movie.poster)
+            .load(BuildConfig.TMDB_IMAGE_URL + movie.poster)
             .apply(RequestOptions().dontTransform())
             .placeholder(R.drawable.background_poster_gradient)
             .listener(object : RequestListener<Drawable>{
@@ -91,7 +93,7 @@ class MovieViewHolder(private val binding: ViewHolderMovieBinding) :
             .error(R.drawable.background_poster_gradient)
             .into(binding.movie1Poster)
         binding.movie1ReviewsCount.text = itemView.context.resources.getString(R.string.reviews, movie.votes)
-        binding.movie1Rating.rating = movie.ratings/2
+        binding.movie1Rating.rating = (movie.ratings /2).toFloat()
     }
 
 }

@@ -4,10 +4,9 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Actor(
-    val id: Int,
-    val name: String,
+data class ActorListResponse(
+    val id: Long,
 
-    @SerialName("profile_path")
-    val picture: String?
+    @SerialName("cast")
+    val actors: List<Actor>
 )

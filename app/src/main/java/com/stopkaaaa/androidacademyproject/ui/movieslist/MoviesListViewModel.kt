@@ -1,14 +1,13 @@
 package com.stopkaaaa.androidacademyproject.ui.movieslist
 
-
-import android.app.Application
 import androidx.lifecycle.*
 import com.stopkaaaa.androidacademyproject.data.models.Movie
 import kotlinx.coroutines.launch
 
-import com.stopkaaaa.androidacademyproject.data.models.loadMovies
+import com.stopkaaaa.androidacademyproject.data.net.RetrofitClient
 
-class MoviesListViewModel(application: Application) : AndroidViewModel(application) {
+
+class MoviesListViewModel : ViewModel() {
 
     private val _mutableMoviesList = MutableLiveData<List<Movie>>(emptyList())
     private val _mutableLoadingState = MutableLiveData<Boolean>(false)
@@ -20,8 +19,13 @@ class MoviesListViewModel(application: Application) : AndroidViewModel(applicati
         viewModelScope.launch {
             _mutableLoadingState.value = true
 
-            val moviesList = loadMovies(getApplication())
-            _mutableMoviesList.value = moviesList
+            val moviesId = RetrofitClient.getPopularMovies().moviesIdList
+
+            val movies = List(moviesId.size) {
+                RetrofitClient.getMovieById(moviesId[it].id)
+            }
+
+            _mutableMoviesList.value = movies
 
             _mutableLoadingState.value = false
         }

@@ -5,7 +5,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class ActorListResponse(
-    val id: Long,
+    @SerialName("id")
+    val id: Int,
 
     @SerialName("cast")
     val actors: List<Actor>

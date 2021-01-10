@@ -8,15 +8,14 @@ import android.view.ViewGroup
 import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import coil.load
 
-import com.bumptech.glide.Glide
 import com.stopkaaaa.androidacademyproject.BuildConfig
 import com.stopkaaaa.androidacademyproject.R
 import com.stopkaaaa.androidacademyproject.adapters.ActorListAdapter
 import com.stopkaaaa.androidacademyproject.adapters.ActorListItemDecorator
 import com.stopkaaaa.androidacademyproject.data.models.Actor
 import com.stopkaaaa.androidacademyproject.data.models.Movie
-import com.stopkaaaa.androidacademyproject.data.net.RetrofitClient
 import com.stopkaaaa.androidacademyproject.databinding.FragmentMoviesDetailsBinding
 import com.stopkaaaa.androidacademyproject.ui.MovieClickListener
 
@@ -34,7 +33,7 @@ class FragmentMoviesDetails : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentMoviesDetailsBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this).get(MoviesDetailsViewModel::class.java)
         return binding.root
@@ -58,7 +57,7 @@ class FragmentMoviesDetails : Fragment() {
         viewModel.loadingState.observe(this.viewLifecycleOwner, this::setLoading)
 
         val bundle: Bundle? = this.arguments
-        bundle?.getLong(MOVIE_TAG)?.let { viewModel.loadMovieById(it) }
+        bundle?.getInt(MOVIE_TAG)?.let { viewModel.loadMovieById(it) }
 
     }
 
@@ -67,12 +66,8 @@ class FragmentMoviesDetails : Fragment() {
             binding.movieTitle.text = title
             binding.genre.text = genres.toString()
                 .subSequence(1, genres.toString().length - 1)
-            context?.let { _context ->
-                Glide.with(_context)
-                    .load(BuildConfig.TMDB_IMAGE_URL + movie.backdrop)
-                    .placeholder(R.drawable.backdrop_placeholder)
-                    .dontAnimate()
-                    .into(binding.backgroundPoster)
+            binding.backgroundPoster.load(BuildConfig.TMDB_IMAGE_URL + movie.backdrop) {
+                placeholder(R.drawable.backdrop_placeholder)
             }
             binding.reviewsCount.text = resources.getString(R.string.reviews, votes)
             binding.rating.rating = ratings.div(2).toFloat()
@@ -119,10 +114,10 @@ class FragmentMoviesDetails : Fragment() {
     }
 
     companion object {
-        fun newInstance(movieID: Long): FragmentMoviesDetails {
+        fun newInstance(movieID: Int): FragmentMoviesDetails {
             return FragmentMoviesDetails().apply {
                 arguments = Bundle().apply {
-                    putLong(MOVIE_TAG, movieID)
+                    putInt(MOVIE_TAG, movieID)
                 }
             }
         }

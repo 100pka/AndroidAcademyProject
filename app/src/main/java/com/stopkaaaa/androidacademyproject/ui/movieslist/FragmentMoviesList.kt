@@ -1,15 +1,20 @@
 package com.stopkaaaa.androidacademyproject.ui.movieslist
 
 import android.content.Context
+import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AbsListView
 import androidx.core.view.isGone
 import androidx.core.view.isInvisible
+import androidx.core.widget.NestedScrollView
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.stopkaaaa.androidacademyproject.R
 
 import com.stopkaaaa.androidacademyproject.adapters.MovieListItemDecoration
@@ -42,19 +47,7 @@ class FragmentMoviesList : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.movieListRv.addItemDecoration(
-            MovieListItemDecoration(
-                resources.getDimension(R.dimen.margin_6).toInt()
-            )
-        )
-
-        if (listenerMovie != null) {
-            moviesAdapter = MovieListAdapter(listenerMovie!!)
-        } else {
-            throw IllegalArgumentException("No listener")
-        }
-
-        binding.movieListRv.adapter = moviesAdapter
+        setupRecyclerView()
 
         viewModel.moviesList.observe(this.viewLifecycleOwner, this::updateAdapter)
         viewModel.loadingState.observe(this.viewLifecycleOwner, this::setLoading)
@@ -62,9 +55,17 @@ class FragmentMoviesList : Fragment() {
         viewModel.load()
     }
 
-    private fun setLoading(loading: Boolean) {
-        binding.progressBar.isGone = !loading
-        binding.movieListRv.isInvisible = loading
+    private fun setLoading(state: Status) {
+        when (state) {
+            Status.FIRST_LOADING -> {
+                binding.progressBar.visibility = View.VISIBLE
+                binding.movieListRv.visibility = View.INVISIBLE
+            }
+            Status.DONE -> {
+                binding.progressBar.visibility = View.GONE
+                binding.movieListRv.visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun updateAdapter(movies: List<Movie>) {
@@ -87,5 +88,20 @@ class FragmentMoviesList : Fragment() {
     override fun onDetach() {
         super.onDetach()
         listenerMovie = null
+    }
+
+    private fun setupRecyclerView() {
+        if (listenerMovie != null) {
+            moviesAdapter = MovieListAdapter(listenerMovie!!)
+        } else {
+            throw IllegalArgumentException("No listener")
+        }
+
+        binding.movieListRv.apply {
+            adapter = moviesAdapter
+            addItemDecoration(
+                MovieListItemDecoration(resources.getDimension(R.dimen.margin_6).toInt())
+            )
+        }
     }
 }

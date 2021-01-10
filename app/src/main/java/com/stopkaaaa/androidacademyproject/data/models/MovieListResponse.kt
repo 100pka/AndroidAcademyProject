@@ -6,16 +6,16 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class MovieListResponse (
     @SerialName("page")
-    val page: Long,
+    val page: Int,
 
     @SerialName("results")
     val moviesIdList: List<MovieId>,
 
     @SerialName("total_pages")
-    val totalPages: Long,
+    val totalPages: Int,
 
     @SerialName("total_results")
-    val totalResults: Long
+    val totalResults: Int
 )
 
 

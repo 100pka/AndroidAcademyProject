@@ -16,7 +16,7 @@ class MoviesDetailsViewModel : ViewModel() {
     val currentMovie: LiveData<Movie> get() = _mutableCurrentMovie
     val actorsList: LiveData<List<Actor>> get() = _mutableActorsList
 
-    fun loadMovieById(id: Long) {
+    fun loadMovieById(id: Int) {
         viewModelScope.launch {
 
             _mutableLoadingState.value = true

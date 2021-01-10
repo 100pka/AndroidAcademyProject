@@ -10,24 +10,26 @@ import com.stopkaaaa.androidacademyproject.data.net.RetrofitClient
 class MoviesListViewModel : ViewModel() {
 
     private val _mutableMoviesList = MutableLiveData<List<Movie>>(emptyList())
-    private val _mutableLoadingState = MutableLiveData<Boolean>(false)
+    private val _mutableLoadingState = MutableLiveData(Status.DONE)
 
     val moviesList: LiveData<List<Movie>> get() = _mutableMoviesList
-    val loadingState: LiveData<Boolean> get() = _mutableLoadingState
+    val loadingState: LiveData<Status> get() = _mutableLoadingState
 
     fun load() {
         viewModelScope.launch {
-            _mutableLoadingState.value = true
+            _mutableLoadingState.value = Status.FIRST_LOADING
 
-            val moviesId = RetrofitClient.getPopularMovies().moviesIdList
+            val moviesResponse = RetrofitClient.getPopularMovies()
 
-            val movies = List(moviesId.size) {
-                RetrofitClient.getMovieById(moviesId[it].id)
+            val movies = List(moviesResponse.moviesIdList.size) {
+                RetrofitClient.getMovieById(moviesResponse.moviesIdList[it].id)
             }
 
             _mutableMoviesList.value = movies
 
-            _mutableLoadingState.value = false
+            _mutableLoadingState.value = Status.DONE
         }
     }
 }
+
+enum class Status { FIRST_LOADING, DONE }

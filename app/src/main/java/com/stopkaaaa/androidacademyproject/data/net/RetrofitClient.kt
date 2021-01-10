@@ -51,11 +51,11 @@ object RetrofitClient {
         moviesApi.getPopularMovies()
     }
 
-    suspend fun getMovieById(movieId: Long) = withContext(Dispatchers.IO) {
+    suspend fun getMovieById(movieId: Int) = withContext(Dispatchers.IO) {
         moviesApi.getMovieById(movieId)
     }
 
-    suspend fun getMovieActorsById(movieId: Long) = withContext(Dispatchers.IO) {
+    suspend fun getMovieActorsById(movieId: Int) = withContext(Dispatchers.IO) {
         moviesApi.getMovieActorsById(movieId)
     }
 }

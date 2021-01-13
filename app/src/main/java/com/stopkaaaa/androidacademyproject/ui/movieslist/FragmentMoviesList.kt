@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
+import android.widget.Toast
 import androidx.core.view.isGone
 import androidx.core.view.isInvisible
 import androidx.core.widget.NestedScrollView
@@ -19,20 +20,24 @@ import com.stopkaaaa.androidacademyproject.R
 
 import com.stopkaaaa.androidacademyproject.adapters.MovieListItemDecoration
 import com.stopkaaaa.androidacademyproject.adapters.MovieListAdapter
+import com.stopkaaaa.androidacademyproject.adapters.MoviesPagedListAdapter
 import com.stopkaaaa.androidacademyproject.data.models.Movie
+import com.stopkaaaa.androidacademyproject.data.paging.PaginationState
 import com.stopkaaaa.androidacademyproject.databinding.FragmentMoviesListBinding
 import com.stopkaaaa.androidacademyproject.ui.MovieClickListener
 
 
 class FragmentMoviesList : Fragment() {
 
-    lateinit var viewModel: MoviesListViewModel
+//    lateinit var viewModel: MoviesListViewModel
+    lateinit var viewModel: MoviesListPagedViewModel
 
     private var _binding: FragmentMoviesListBinding? = null
     private val binding get() = _binding!!
     private var listenerMovie: MovieClickListener? = null
 
-    lateinit var moviesAdapter: MovieListAdapter
+//    lateinit var moviesAdapter: MovieListAdapter
+    lateinit var moviesAdapter: MoviesPagedListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,7 +45,7 @@ class FragmentMoviesList : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMoviesListBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this).get(MoviesListViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(MoviesListPagedViewModel::class.java)
         return binding.root
     }
 
@@ -49,29 +54,47 @@ class FragmentMoviesList : Fragment() {
 
         setupRecyclerView()
 
-        viewModel.moviesList.observe(this.viewLifecycleOwner, this::updateAdapter)
-        viewModel.loadingState.observe(this.viewLifecycleOwner, this::setLoading)
+        viewModel.moviesPagedLiveData.observe(this.viewLifecycleOwner, {
+            pagedList -> moviesAdapter.submitList(pagedList)
+        })
+        viewModel.paginationState?.observe(this.viewLifecycleOwner, this::updatePaginationState)
 
-        viewModel.load()
     }
 
-    private fun setLoading(state: Status) {
+    private fun updatePaginationState(state: PaginationState) {
         when (state) {
-            Status.FIRST_LOADING -> {
+            PaginationState.DONE -> {
+                binding.progressBar.visibility = View.GONE
+                binding.movieListRv.visibility = View.VISIBLE
+            }
+            PaginationState.EMPTY -> {
+                binding.progressBar.visibility = View.GONE
+                binding.movieListRv.visibility = View.INVISIBLE
+            }
+            PaginationState.LOADING -> {
                 binding.progressBar.visibility = View.VISIBLE
                 binding.movieListRv.visibility = View.INVISIBLE
             }
-            Status.DONE -> {
+            PaginationState.ERROR -> {
                 binding.progressBar.visibility = View.GONE
-                binding.movieListRv.visibility = View.VISIBLE
+                binding.movieListRv.visibility = View.INVISIBLE
+                Toast.makeText(this.context, "Error", Toast.LENGTH_LONG).show()
             }
         }
     }
 
-    private fun updateAdapter(movies: List<Movie>) {
-        moviesAdapter.bindMovies(movies)
-    }
-
+//    private fun setLoading(state: Status) {
+//        when (state) {
+//            Status.FIRST_LOADING -> {
+//                binding.progressBar.visibility = View.VISIBLE
+//                binding.movieListRv.visibility = View.INVISIBLE
+//            }
+//            Status.DONE -> {
+//                binding.progressBar.visibility = View.GONE
+//                binding.movieListRv.visibility = View.VISIBLE
+//            }
+//        }
+//    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -92,7 +115,7 @@ class FragmentMoviesList : Fragment() {
 
     private fun setupRecyclerView() {
         if (listenerMovie != null) {
-            moviesAdapter = MovieListAdapter(listenerMovie!!)
+            moviesAdapter = MoviesPagedListAdapter(listenerMovie!!)
         } else {
             throw IllegalArgumentException("No listener")
         }

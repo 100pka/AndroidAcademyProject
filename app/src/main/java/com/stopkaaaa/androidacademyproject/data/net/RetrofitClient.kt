@@ -51,6 +51,10 @@ object RetrofitClient {
         moviesApi.getPopularMovies()
     }
 
+    suspend fun getPopularMoviesByPage(page: Int) = withContext(Dispatchers.IO) {
+        moviesApi.getPopularMoviesByPage(page)
+    }
+
     suspend fun getMovieById(movieId: Int) = withContext(Dispatchers.IO) {
         moviesApi.getMovieById(movieId)
     }

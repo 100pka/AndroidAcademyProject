@@ -1,25 +1,17 @@
 package com.stopkaaaa.androidacademyproject.ui.movieslist
 
 import android.content.Context
-import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AbsListView
 import android.widget.Toast
-import androidx.core.view.isGone
-import androidx.core.view.isInvisible
-import androidx.core.widget.NestedScrollView
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.stopkaaaa.androidacademyproject.R
 
 import com.stopkaaaa.androidacademyproject.adapters.MovieListItemDecoration
-import com.stopkaaaa.androidacademyproject.adapters.MovieListAdapter
 import com.stopkaaaa.androidacademyproject.adapters.MoviesPagedListAdapter
 import com.stopkaaaa.androidacademyproject.data.models.Movie
 import com.stopkaaaa.androidacademyproject.data.paging.PaginationState
@@ -29,15 +21,13 @@ import com.stopkaaaa.androidacademyproject.ui.MovieClickListener
 
 class FragmentMoviesList : Fragment() {
 
-//    lateinit var viewModel: MoviesListViewModel
     lateinit var viewModel: MoviesListPagedViewModel
 
     private var _binding: FragmentMoviesListBinding? = null
     private val binding get() = _binding!!
     private var listenerMovie: MovieClickListener? = null
 
-//    lateinit var moviesAdapter: MovieListAdapter
-    lateinit var moviesAdapter: MoviesPagedListAdapter
+    private lateinit var moviesAdapter: MoviesPagedListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -82,19 +72,6 @@ class FragmentMoviesList : Fragment() {
             }
         }
     }
-
-//    private fun setLoading(state: Status) {
-//        when (state) {
-//            Status.FIRST_LOADING -> {
-//                binding.progressBar.visibility = View.VISIBLE
-//                binding.movieListRv.visibility = View.INVISIBLE
-//            }
-//            Status.DONE -> {
-//                binding.progressBar.visibility = View.GONE
-//                binding.movieListRv.visibility = View.VISIBLE
-//            }
-//        }
-//    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

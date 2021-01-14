@@ -15,6 +15,7 @@ class MoviesListPagedViewModel : ViewModel() {
     private val pagedConfig = PagedList.Config.Builder()
         .setPageSize(10)
         .setEnablePlaceholders(false)
+        .setPrefetchDistance(4)
         .build()
 
     val moviesPagedLiveData = LivePagedListBuilder(moviesDataSourceFactory, pagedConfig).build()

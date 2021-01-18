@@ -14,7 +14,7 @@ class MoviesDetailsViewModel(
     private val movieId: Int
 ) : AndroidViewModel(application) {
 
-    private val _mutableLoadingState = MutableLiveData<Boolean>(false)
+    private val _mutableLoadingState = MutableLiveData(false)
     private val _mutableCurrentMovie = MutableLiveData<Movie>()
 
     val loadingState: LiveData<Boolean> get() = _mutableLoadingState

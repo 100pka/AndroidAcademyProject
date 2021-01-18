@@ -11,12 +11,12 @@ import com.stopkaaaa.androidacademyproject.data.models.loadMovies
 class MoviesListViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _mutableMoviesList = MutableLiveData<List<Movie>>(emptyList())
-    private val _mutableLoadingState = MutableLiveData<Boolean>(false)
+    private val _mutableLoadingState = MutableLiveData(false)
 
     val moviesList: LiveData<List<Movie>> get() = _mutableMoviesList
     val loadingState: LiveData<Boolean> get() = _mutableLoadingState
 
-    fun load() {
+    init {
         viewModelScope.launch {
             _mutableLoadingState.value = true
 

@@ -58,8 +58,6 @@ class FragmentMoviesList : Fragment() {
 
         viewModel.moviesList.observe(this.viewLifecycleOwner, this::updateAdapter)
         viewModel.loadingState.observe(this.viewLifecycleOwner, this::setLoading)
-
-        viewModel.load()
     }
 
     private fun setLoading(loading: Boolean) {

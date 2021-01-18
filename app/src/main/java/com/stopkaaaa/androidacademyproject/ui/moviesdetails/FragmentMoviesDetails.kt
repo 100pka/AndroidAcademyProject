@@ -5,7 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isGone
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 
@@ -99,8 +100,8 @@ class FragmentMoviesDetails : Fragment() {
     }
 
     private fun setLoading(loading: Boolean) {
-        binding.movieDetailsProgressBar.isGone = !loading
-        binding.movieDetailsContainer.isGone = loading
+        binding.movieDetailsProgressBar.isVisible = loading
+        binding.movieDetailsContainer.isInvisible = loading
     }
 
     override fun onAttach(context: Context) {
@@ -121,10 +122,10 @@ class FragmentMoviesDetails : Fragment() {
     }
 
     companion object {
-        fun newInstance(movieID: Int): FragmentMoviesDetails {
+        fun newInstance(movieId: Int): FragmentMoviesDetails {
             return FragmentMoviesDetails().apply {
                 arguments = Bundle().apply {
-                    putInt(MOVIE_ID_ARG, movieID)
+                    putInt(MOVIE_ID_ARG, movieId)
                 }
             }
         }

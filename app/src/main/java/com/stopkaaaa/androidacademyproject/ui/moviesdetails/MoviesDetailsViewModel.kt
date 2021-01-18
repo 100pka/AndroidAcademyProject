@@ -32,17 +32,4 @@ class MoviesDetailsViewModel(
 
         }
     }
-
-//    fun loadMovieById(id: Int) {
-//        viewModelScope.launch {
-//
-//            _mutableLoadingState.value = true
-//
-//            val movie = getMovieById(getApplication(), id)
-//            _mutableCurrentMovie.value = movie
-//
-//            _mutableLoadingState.value = false
-//
-//        }
-//    }
 }

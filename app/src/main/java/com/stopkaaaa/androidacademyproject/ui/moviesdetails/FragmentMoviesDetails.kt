@@ -101,7 +101,7 @@ class FragmentMoviesDetails : Fragment() {
 
     private fun setLoading(loading: Boolean) {
         binding.movieDetailsProgressBar.isVisible = loading
-        binding.movieDetailsContainer.isInvisible = loading
+        binding.movieDetailsContainer.isVisible = !loading
     }
 
     override fun onAttach(context: Context) {

@@ -9,7 +9,10 @@ import com.stopkaaaa.androidacademyproject.data.models.Movie
 import com.stopkaaaa.androidacademyproject.data.models.getMovieById
 import kotlinx.coroutines.launch
 
-class MoviesDetailsViewModel(application: Application) : AndroidViewModel(application) {
+class MoviesDetailsViewModel(
+    application: Application,
+    private val movieId: Int
+) : AndroidViewModel(application) {
 
     private val _mutableLoadingState = MutableLiveData<Boolean>(false)
     private val _mutableCurrentMovie = MutableLiveData<Movie>()
@@ -17,16 +20,29 @@ class MoviesDetailsViewModel(application: Application) : AndroidViewModel(applic
     val loadingState: LiveData<Boolean> get() = _mutableLoadingState
     val currentMovie: LiveData<Movie> get() = _mutableCurrentMovie
 
-    fun loadMovieById(id: Int) {
+    init {
         viewModelScope.launch {
 
             _mutableLoadingState.value = true
 
-            val movie = getMovieById(getApplication(), id)
+            val movie = getMovieById(getApplication(), movieId)
             _mutableCurrentMovie.value = movie
 
             _mutableLoadingState.value = false
 
         }
     }
+
+//    fun loadMovieById(id: Int) {
+//        viewModelScope.launch {
+//
+//            _mutableLoadingState.value = true
+//
+//            val movie = getMovieById(getApplication(), id)
+//            _mutableCurrentMovie.value = movie
+//
+//            _mutableLoadingState.value = false
+//
+//        }
+//    }
 }

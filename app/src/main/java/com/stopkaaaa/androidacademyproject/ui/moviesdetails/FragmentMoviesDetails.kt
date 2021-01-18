@@ -16,12 +16,20 @@ import com.stopkaaaa.androidacademyproject.adapters.ActorListItemDecorator
 import com.stopkaaaa.androidacademyproject.data.models.Movie
 import com.stopkaaaa.androidacademyproject.databinding.FragmentMoviesDetailsBinding
 import com.stopkaaaa.androidacademyproject.ui.MovieClickListener
+import java.lang.IllegalArgumentException
+import kotlin.properties.Delegates
 
-const val MOVIE_TAG = "Movie"
+const val MOVIE_ID_ARG = "Movie"
 
 class FragmentMoviesDetails : Fragment() {
 
-    lateinit var viewModel: MoviesDetailsViewModel
+    private var movieId by Delegates.notNull<Int>()
+    private val viewModel: MoviesDetailsViewModel by lazy {
+        ViewModelProvider(
+            this,
+            MoviesDetailsViewModelFactory(requireActivity().application, movieId)
+        ).get(MoviesDetailsViewModel::class.java)
+    }
 
     private var _binding: FragmentMoviesDetailsBinding? = null
     private val binding get() = _binding!!
@@ -31,9 +39,12 @@ class FragmentMoviesDetails : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentMoviesDetailsBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this).get(MoviesDetailsViewModel::class.java)
+
+        val bundle: Bundle? = this.arguments
+        movieId =
+            bundle?.getInt(MOVIE_ID_ARG) ?: throw IllegalArgumentException("Couldn't find movieId")
         return binding.root
     }
 
@@ -52,9 +63,6 @@ class FragmentMoviesDetails : Fragment() {
 
         viewModel.currentMovie.observe(this.viewLifecycleOwner, this::bindMovie)
         viewModel.loadingState.observe(this.viewLifecycleOwner, this::setLoading)
-
-        val bundle: Bundle? = this.arguments
-        bundle?.getInt(MOVIE_TAG)?.let { viewModel.loadMovieById(it) }
 
     }
 
@@ -116,7 +124,7 @@ class FragmentMoviesDetails : Fragment() {
         fun newInstance(movieID: Int): FragmentMoviesDetails {
             return FragmentMoviesDetails().apply {
                 arguments = Bundle().apply {
-                    putInt(MOVIE_TAG, movieID)
+                    putInt(MOVIE_ID_ARG, movieID)
                 }
             }
         }

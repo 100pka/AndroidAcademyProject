@@ -6,9 +6,11 @@ import com.stopkaaaa.androidacademyproject.data.models.Movie
 import com.stopkaaaa.androidacademyproject.data.net.RetrofitClient
 import kotlinx.coroutines.launch
 
-class MoviesDetailsViewModel : ViewModel() {
+class MoviesDetailsViewModel(
+    private val movieId: Int
+) : ViewModel() {
 
-    private val _mutableLoadingState = MutableLiveData<Boolean>(false)
+    private val _mutableLoadingState = MutableLiveData(false)
     private val _mutableCurrentMovie = MutableLiveData<Movie>()
     private val _mutableActorsList = MutableLiveData<List<Actor>>(emptyList())
 
@@ -16,15 +18,15 @@ class MoviesDetailsViewModel : ViewModel() {
     val currentMovie: LiveData<Movie> get() = _mutableCurrentMovie
     val actorsList: LiveData<List<Actor>> get() = _mutableActorsList
 
-    fun loadMovieById(id: Int) {
+    init {
         viewModelScope.launch {
 
             _mutableLoadingState.value = true
 
-            val movie = RetrofitClient.getMovieById(id)
+            val movie = RetrofitClient.getMovieById(movieId)
             _mutableCurrentMovie.value = movie
 
-            val actors = RetrofitClient.getMovieActorsById(id).actors
+            val actors = RetrofitClient.getMovieActorsById(movieId).actors
             _mutableActorsList.value = actors
 
             _mutableLoadingState.value = false

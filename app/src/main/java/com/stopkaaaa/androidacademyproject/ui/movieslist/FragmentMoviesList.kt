@@ -33,7 +33,7 @@ class FragmentMoviesList : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentMoviesListBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this).get(MoviesListPagedViewModel::class.java)
         return binding.root

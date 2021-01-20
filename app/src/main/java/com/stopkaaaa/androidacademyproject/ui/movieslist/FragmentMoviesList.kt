@@ -1,26 +1,33 @@
-package com.stopkaaaa.androidacademyproject
+package com.stopkaaaa.androidacademyproject.ui.movieslist
 
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isGone
+import androidx.core.view.isInvisible
 
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.ViewModelProvider
+import com.stopkaaaa.androidacademyproject.R
 
 import com.stopkaaaa.androidacademyproject.adapters.MovieListItemDecoration
 import com.stopkaaaa.androidacademyproject.adapters.MovieListAdapter
-import com.stopkaaaa.androidacademyproject.data.models.loadMovies
+import com.stopkaaaa.androidacademyproject.data.models.Movie
 import com.stopkaaaa.androidacademyproject.databinding.FragmentMoviesListBinding
-import kotlinx.coroutines.*
-import java.lang.Exception
+import com.stopkaaaa.androidacademyproject.ui.MovieClickListener
+
 
 class FragmentMoviesList : Fragment() {
+
+    lateinit var viewModel: MoviesListViewModel
 
     private var _binding: FragmentMoviesListBinding? = null
     private val binding get() = _binding!!
     private var listenerMovie: MovieClickListener? = null
+
+    lateinit var moviesAdapter: MovieListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,6 +35,7 @@ class FragmentMoviesList : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMoviesListBinding.inflate(inflater, container, false)
+        viewModel = ViewModelProvider(this).get(MoviesListViewModel::class.java)
         return binding.root
     }
 
@@ -39,16 +47,26 @@ class FragmentMoviesList : Fragment() {
                 resources.getDimension(R.dimen.margin_6).toInt()
             )
         )
-        val adapter = listenerMovie?.let { MovieListAdapter(it) }
-        binding.movieListRv.adapter = adapter
 
-        lifecycleScope.launch {
-            val moviesList = context?.let { loadMovies(it) }
-            adapter?.bindMovies(moviesList)
-            binding.progressBar.visibility = View.GONE
-            binding.movieListRv.visibility = View.VISIBLE
+        if (listenerMovie != null) {
+            moviesAdapter = MovieListAdapter(listenerMovie!!)
+        } else {
+            throw IllegalArgumentException("No listener")
         }
 
+        binding.movieListRv.adapter = moviesAdapter
+
+        viewModel.moviesList.observe(this.viewLifecycleOwner, this::updateAdapter)
+        viewModel.loadingState.observe(this.viewLifecycleOwner, this::setLoading)
+    }
+
+    private fun setLoading(loading: Boolean) {
+        binding.progressBar.isGone = !loading
+        binding.movieListRv.isInvisible = loading
+    }
+
+    private fun updateAdapter(movies: List<Movie>) {
+        moviesAdapter.bindMovies(movies)
     }
 
 
@@ -56,9 +74,6 @@ class FragmentMoviesList : Fragment() {
         super.onAttach(context)
         if (activity is MovieClickListener) {
             this.listenerMovie = activity as MovieClickListener
-        }
-        else {
-            throw IllegalArgumentException("Activity must implement MovieClickListener")
         }
     }
 

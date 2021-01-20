@@ -1,4 +1,4 @@
-package com.stopkaaaa.androidacademyproject
+package com.stopkaaaa.androidacademyproject.ui
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -18,6 +18,7 @@ import androidx.core.view.marginBottom
 import androidx.core.view.marginEnd
 import androidx.core.view.marginStart
 import androidx.core.view.marginTop
+import com.stopkaaaa.androidacademyproject.R
 
 
 /**

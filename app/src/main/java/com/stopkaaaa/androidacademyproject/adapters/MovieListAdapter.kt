@@ -12,7 +12,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
-import com.stopkaaaa.androidacademyproject.MovieClickListener
+import com.stopkaaaa.androidacademyproject.ui.MovieClickListener
 import com.stopkaaaa.androidacademyproject.R
 import com.stopkaaaa.androidacademyproject.data.models.Movie
 import com.stopkaaaa.androidacademyproject.databinding.ViewHolderMovieBinding

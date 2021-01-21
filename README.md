@@ -1,2 +1,3 @@
 # AndroidAcademyProject
-Android Academy Fundamentals 2020 Pet Project by Stepan Kulagin
+The Movie DataBase App
+Kotlin, Coroutines, Retrofit, Paging Library, MVVM, LiveData

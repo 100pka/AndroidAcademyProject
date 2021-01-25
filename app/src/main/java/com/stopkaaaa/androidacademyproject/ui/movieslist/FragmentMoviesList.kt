@@ -91,12 +91,9 @@ class FragmentMoviesList : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        if (listenerMovie != null) {
-            moviesAdapter = MoviesPagedListAdapter(listenerMovie!!)
-        } else {
-            throw IllegalArgumentException("No listener")
+        listenerMovie?.let {
+            moviesAdapter = MoviesPagedListAdapter(it)
         }
-
         binding.movieListRv.apply {
             adapter = moviesAdapter
             addItemDecoration(

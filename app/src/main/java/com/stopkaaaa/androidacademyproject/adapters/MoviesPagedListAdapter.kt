@@ -1,12 +1,15 @@
 package com.stopkaaaa.androidacademyproject.adapters
 
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import coil.size.Scale
 import com.stopkaaaa.androidacademyproject.BuildConfig
 import com.stopkaaaa.androidacademyproject.R
 import com.stopkaaaa.androidacademyproject.data.models.Movie
@@ -22,9 +25,11 @@ PagedListAdapter<Movie, MovieViewHolder>(diffUtilCallback){
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        getItem(position)?.let { holder.onBind(it) }
-        holder.itemView.setOnClickListener {
-            getItem(position)?.let { it1 -> movieClickListener.movieClicked(it1.id) }
+        getItem(position)?.let { movie ->
+            holder.onBind(movie)
+            holder.itemView.setOnClickListener {
+                movieClickListener.movieClicked(movie.id)
+            }
         }
     }
 
@@ -62,19 +67,20 @@ class MovieViewHolder(private val binding: ViewHolderMovieBinding) :
                 itemView.context.resources.getString(R.string.age_non_adult)
         }
         binding.movie1Poster.load(BuildConfig.TMDB_IMAGE_URL + movie.poster) {
-            placeholder(R.drawable.background_poster_gradient)
+            placeholder(R.drawable.movie_list_poster_placeholder)
+            error(R.drawable.movie_list_poster_placeholder)
+            scale(Scale.FILL)
             target(
                 onStart = {
                     binding.movie1Poster.setImageDrawable(it)
-                    binding.progressBar.visibility = View.VISIBLE
+                    binding.progressBar.isVisible = true
                 },
                 onSuccess = {
-                    binding.progressBar.visibility = View.INVISIBLE
+                    binding.progressBar.isVisible = false
                     binding.movie1Poster.setImageDrawable(it)
                 },
                 onError = {
-                    binding.progressBar.visibility = View.INVISIBLE
-                    binding.movie1Poster.setImageDrawable(it)
+                    binding.progressBar.isVisible = false
                 })
         }
         binding.movie1ReviewsCount.text =

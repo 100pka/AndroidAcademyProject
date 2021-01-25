@@ -47,10 +47,6 @@ object RetrofitClient {
 
     private val moviesApi: MoviesApi = retrofit.create(MoviesApi::class.java)
 
-    suspend fun getPopularMovies() = withContext(Dispatchers.IO) {
-        moviesApi.getPopularMovies()
-    }
-
     suspend fun getPopularMoviesByPage(page: Int) = withContext(Dispatchers.IO) {
         moviesApi.getPopularMoviesByPage(page)
     }

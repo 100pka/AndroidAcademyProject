@@ -45,21 +45,6 @@ object RetrofitClient {
         .addConverterFactory(json.asConverterFactory(contentType))
         .build()
 
-    private val moviesApi: MoviesApi = retrofit.create(MoviesApi::class.java)
+    val moviesApi: MoviesApi = retrofit.create(MoviesApi::class.java)
 
-    suspend fun getPopularMovies() = withContext(Dispatchers.IO) {
-        moviesApi.getPopularMovies()
-    }
-
-    suspend fun getPopularMoviesByPage(page: Int) = withContext(Dispatchers.IO) {
-        moviesApi.getPopularMoviesByPage(page)
-    }
-
-    suspend fun getMovieById(movieId: Int) = withContext(Dispatchers.IO) {
-        moviesApi.getMovieById(movieId)
-    }
-
-    suspend fun getMovieActorsById(movieId: Int) = withContext(Dispatchers.IO) {
-        moviesApi.getMovieActorsById(movieId)
-    }
 }

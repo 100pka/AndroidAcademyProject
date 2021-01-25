@@ -47,7 +47,7 @@ class FragmentMoviesList : Fragment() {
         viewModel.moviesPagedLiveData.observe(this.viewLifecycleOwner, {
             pagedList -> moviesAdapter.submitList(pagedList)
         })
-        viewModel.paginationState?.observe(this.viewLifecycleOwner, this::updatePaginationState)
+        viewModel.paginationState.observe(this.viewLifecycleOwner, this::updatePaginationState)
 
     }
 
@@ -67,8 +67,8 @@ class FragmentMoviesList : Fragment() {
             }
             PaginationState.ERROR -> {
                 binding.progressBar.visibility = View.GONE
-                binding.movieListRv.visibility = View.INVISIBLE
-                Toast.makeText(this.context, "Error", Toast.LENGTH_LONG).show()
+                binding.movieListRv.visibility = View.VISIBLE
+                Toast.makeText(this.context, "No Connection", Toast.LENGTH_LONG).show()
             }
         }
     }

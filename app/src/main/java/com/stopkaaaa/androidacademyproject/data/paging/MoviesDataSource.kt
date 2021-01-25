@@ -4,12 +4,13 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
+import com.stopkaaaa.androidacademyproject.data.MovieRepository
 import com.stopkaaaa.androidacademyproject.data.models.Movie
-import com.stopkaaaa.androidacademyproject.data.models.MovieId
-import com.stopkaaaa.androidacademyproject.data.net.RetrofitClient
 import kotlinx.coroutines.*
 
-class MoviesDataSource : PageKeyedDataSource<Int, Movie>() {
+class MoviesDataSource(
+    private val repository: MovieRepository
+) : PageKeyedDataSource<Int, Movie>() {
 
     private var job = SupervisorJob()
     private val scope = CoroutineScope(getJobErrorHandler() + job)
@@ -44,13 +45,16 @@ class MoviesDataSource : PageKeyedDataSource<Int, Movie>() {
         callback: (List<Movie>) -> Unit
     ) {
         scope.launch {
-            val result = RetrofitClient.getPopularMoviesByPage(page)
+            if (page == 1) {
+                callback(repository.getSavedMovies())
+            }
+            val result = repository.getPopularMoviesByPage(page)
             retryQuery = null
             val moviesId = result.body()
             var movies: List<Movie>? = null
             if (moviesId?.moviesIdList != null && moviesId.moviesIdList.isNotEmpty()) {
                 movies = List(moviesId.moviesIdList.size) {
-                    RetrofitClient.getMovieById(moviesId.moviesIdList[it].id)
+                    repository.getMovieById(moviesId.moviesIdList[it].id)
                 }
                 updateState(PaginationState.DONE)
             } else updateState(PaginationState.EMPTY)

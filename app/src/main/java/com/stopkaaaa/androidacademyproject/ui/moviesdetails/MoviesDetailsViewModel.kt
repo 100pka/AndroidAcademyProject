@@ -1,6 +1,7 @@
 package com.stopkaaaa.androidacademyproject.ui.moviesdetails
 
 import androidx.lifecycle.*
+import com.stopkaaaa.androidacademyproject.data.MovieRepositoryImpl
 import com.stopkaaaa.androidacademyproject.data.models.Actor
 import com.stopkaaaa.androidacademyproject.data.models.Movie
 import com.stopkaaaa.androidacademyproject.data.net.RetrofitClient
@@ -18,15 +19,17 @@ class MoviesDetailsViewModel(
     val currentMovie: LiveData<Movie> get() = _mutableCurrentMovie
     val actorsList: LiveData<List<Actor>> get() = _mutableActorsList
 
+    private val repository = MovieRepositoryImpl()
+
     init {
         viewModelScope.launch {
 
             _mutableLoadingState.value = true
 
-            val movie = RetrofitClient.getMovieById(movieId)
+            val movie = repository.getMovieById(movieId)
             _mutableCurrentMovie.value = movie
 
-            val actors = RetrofitClient.getMovieActorsById(movieId).actors
+            val actors = repository.getMovieActorsById(movieId).actors
             _mutableActorsList.value = actors
 
             _mutableLoadingState.value = false

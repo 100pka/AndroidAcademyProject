@@ -5,70 +5,83 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isGone
-import androidx.core.view.isInvisible
+import android.widget.Toast
+import androidx.core.view.isVisible
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.stopkaaaa.androidacademyproject.R
 
 import com.stopkaaaa.androidacademyproject.adapters.MovieListItemDecoration
-import com.stopkaaaa.androidacademyproject.adapters.MovieListAdapter
+import com.stopkaaaa.androidacademyproject.adapters.MoviesPagedListAdapter
 import com.stopkaaaa.androidacademyproject.data.models.Movie
+import com.stopkaaaa.androidacademyproject.data.paging.PaginationState
 import com.stopkaaaa.androidacademyproject.databinding.FragmentMoviesListBinding
 import com.stopkaaaa.androidacademyproject.ui.MovieClickListener
 
 
 class FragmentMoviesList : Fragment() {
 
-    lateinit var viewModel: MoviesListViewModel
+    lateinit var viewModel: MoviesListPagedViewModel
 
     private var _binding: FragmentMoviesListBinding? = null
     private val binding get() = _binding!!
     private var listenerMovie: MovieClickListener? = null
 
-    lateinit var moviesAdapter: MovieListAdapter
+    private lateinit var moviesAdapter: MoviesPagedListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentMoviesListBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this).get(MoviesListViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(MoviesListPagedViewModel::class.java)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.movieListRv.addItemDecoration(
-            MovieListItemDecoration(
-                resources.getDimension(R.dimen.margin_6).toInt()
-            )
-        )
+        setupRecyclerView()
 
-        if (listenerMovie != null) {
-            moviesAdapter = MovieListAdapter(listenerMovie!!)
-        } else {
-            throw IllegalArgumentException("No listener")
+        viewModel.moviesPagedLiveData.observe(this.viewLifecycleOwner, {
+            pagedList -> moviesAdapter.submitList(pagedList)
+        })
+        viewModel.paginationState?.observe(this.viewLifecycleOwner, this::updatePaginationState)
+
+    }
+
+    private fun updatePaginationState(state: PaginationState) {
+        when (state) {
+            PaginationState.DONE -> {
+                binding.progressBar.isVisible = false
+                binding.movieListRv.isVisible = true
+                binding.progressBarBottom.isVisible = false
+            }
+            PaginationState.EMPTY -> {
+                binding.progressBar.isVisible = false
+                binding.movieListRv.isVisible = false
+                binding.progressBarBottom.isVisible = false
+            }
+            PaginationState.LOADING_INITIAL -> {
+                binding.progressBar.isVisible = true
+                binding.movieListRv.isVisible = false
+                binding.progressBarBottom.isVisible = false
+            }
+            PaginationState.LOADING_AFTER -> {
+                binding.progressBar.isVisible = false
+                binding.movieListRv.isVisible = true
+                binding.progressBarBottom.isVisible = true
+            }
+            PaginationState.ERROR -> {
+                binding.progressBar.isVisible = false
+                binding.movieListRv.isVisible = false
+                binding.progressBarBottom.isVisible = false
+                Toast.makeText(this.context, "Error", Toast.LENGTH_LONG).show()
+            }
         }
-
-        binding.movieListRv.adapter = moviesAdapter
-
-        viewModel.moviesList.observe(this.viewLifecycleOwner, this::updateAdapter)
-        viewModel.loadingState.observe(this.viewLifecycleOwner, this::setLoading)
     }
-
-    private fun setLoading(loading: Boolean) {
-        binding.progressBar.isGone = !loading
-        binding.movieListRv.isInvisible = loading
-    }
-
-    private fun updateAdapter(movies: List<Movie>) {
-        moviesAdapter.bindMovies(movies)
-    }
-
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -85,5 +98,17 @@ class FragmentMoviesList : Fragment() {
     override fun onDetach() {
         super.onDetach()
         listenerMovie = null
+    }
+
+    private fun setupRecyclerView() {
+        listenerMovie?.let {
+            moviesAdapter = MoviesPagedListAdapter(it)
+        }
+        binding.movieListRv.apply {
+            adapter = moviesAdapter
+            addItemDecoration(
+                MovieListItemDecoration(resources.getDimension(R.dimen.margin_6).toInt())
+            )
+        }
     }
 }

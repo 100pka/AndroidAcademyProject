@@ -3,7 +3,9 @@ package com.stopkaaaa.androidacademyproject.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import coil.load
+
+import com.stopkaaaa.androidacademyproject.BuildConfig
 import com.stopkaaaa.androidacademyproject.R
 import com.stopkaaaa.androidacademyproject.data.models.Actor
 import com.stopkaaaa.androidacademyproject.databinding.ViewHolderActorBinding
@@ -51,9 +53,8 @@ class ActorViewHolder(private val binding: ViewHolderActorBinding) :
     RecyclerView.ViewHolder(binding.root) {
     fun onBind(actor: Actor) {
         binding.actorName.text = actor.name
-        Glide.with(binding.root)
-            .load(actor.picture)
-            .placeholder(R.drawable.background_poster_gradient)
-            .into(binding.actorPhoto)
+        binding.actorPhoto.load(BuildConfig.TMDB_IMAGE_URL + actor.picture) {
+            placeholder(R.drawable.actor_placeholder)
+        }
     }
 }

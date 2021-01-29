@@ -5,15 +5,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import coil.load
 
-import com.bumptech.glide.Glide
+import com.stopkaaaa.androidacademyproject.BuildConfig
 import com.stopkaaaa.androidacademyproject.R
 import com.stopkaaaa.androidacademyproject.adapters.ActorListAdapter
 import com.stopkaaaa.androidacademyproject.adapters.ActorListItemDecorator
+import com.stopkaaaa.androidacademyproject.data.models.Actor
 import com.stopkaaaa.androidacademyproject.data.models.Movie
 import com.stopkaaaa.androidacademyproject.databinding.FragmentMoviesDetailsBinding
 import com.stopkaaaa.androidacademyproject.ui.MovieClickListener
@@ -28,7 +29,7 @@ class FragmentMoviesDetails : Fragment() {
     private val viewModel: MoviesDetailsViewModel by lazy {
         ViewModelProvider(
             this,
-            MoviesDetailsViewModelFactory(requireActivity().application, movieId)
+            MoviesDetailsViewModelFactory(movieId)
         ).get(MoviesDetailsViewModel::class.java)
     }
 
@@ -63,6 +64,7 @@ class FragmentMoviesDetails : Fragment() {
         )
 
         viewModel.currentMovie.observe(this.viewLifecycleOwner, this::bindMovie)
+        viewModel.actorsList.observe(this.viewLifecycleOwner, this::bindActors)
         viewModel.loadingState.observe(this.viewLifecycleOwner, this::setLoading)
 
     }
@@ -72,30 +74,29 @@ class FragmentMoviesDetails : Fragment() {
             binding.movieTitle.text = title
             binding.genre.text = genres.toString()
                 .subSequence(1, genres.toString().length - 1)
-            context?.let { _context ->
-                Glide.with(_context)
-                    .load(movie.backdrop)
-                    .placeholder(R.drawable.backdrop_placeholder)
-                    .dontAnimate()
-                    .into(binding.backgroundPoster)
+            binding.backgroundPoster.load(BuildConfig.TMDB_IMAGE_URL + movie.backdrop) {
+                placeholder(R.drawable.backdrop_placeholder)
+                error(R.drawable.backdrop_placeholder)
             }
             binding.reviewsCount.text = resources.getString(R.string.reviews, votes)
-            binding.rating.rating = ratings.div(2)
+            binding.rating.rating = ratings.div(2).toFloat()
             binding.storylineBody.text = overview
             if (adult) {
                 binding.ageLimit.text = resources.getString(R.string.age_adult)
             } else {
                 binding.ageLimit.text = resources.getString(R.string.age_non_adult)
             }
+        }
+    }
 
-            if (actors.isEmpty()) {
-                binding.castTitle.visibility = View.INVISIBLE
-            } else {
-                binding.castTitle.visibility = View.VISIBLE
-                val adapter = ActorListAdapter()
-                adapter.bindActors(actors)
-                binding.actorsRv.adapter = adapter
-            }
+    private fun bindActors(actorsList: List<Actor>) {
+        if (actorsList.isEmpty()) {
+            binding.castTitle.visibility = View.INVISIBLE
+        } else {
+            binding.castTitle.visibility = View.VISIBLE
+            val adapter = ActorListAdapter()
+            adapter.bindActors(actorsList)
+            binding.actorsRv.adapter = adapter
         }
     }
 

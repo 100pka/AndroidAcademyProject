@@ -4,14 +4,10 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Genre(
+data class ActorListResponse(
     @SerialName("id")
     val id: Int,
 
-    @SerialName("name")
-    val name: String
-) {
-    override fun toString(): String {
-        return name
-    }
-}
+    @SerialName("cast")
+    val actors: List<Actor>
+)

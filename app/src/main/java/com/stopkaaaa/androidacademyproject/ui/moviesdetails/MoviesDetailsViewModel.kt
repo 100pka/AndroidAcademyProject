@@ -1,32 +1,33 @@
 package com.stopkaaaa.androidacademyproject.ui.moviesdetails
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.stopkaaaa.androidacademyproject.data.models.Actor
 import com.stopkaaaa.androidacademyproject.data.models.Movie
-import com.stopkaaaa.androidacademyproject.data.models.getMovieById
+import com.stopkaaaa.androidacademyproject.data.net.RetrofitClient
 import kotlinx.coroutines.launch
 
 class MoviesDetailsViewModel(
-    application: Application,
     private val movieId: Int
-) : AndroidViewModel(application) {
+) : ViewModel() {
 
     private val _mutableLoadingState = MutableLiveData(false)
     private val _mutableCurrentMovie = MutableLiveData<Movie>()
+    private val _mutableActorsList = MutableLiveData<List<Actor>>(emptyList())
 
     val loadingState: LiveData<Boolean> get() = _mutableLoadingState
     val currentMovie: LiveData<Movie> get() = _mutableCurrentMovie
+    val actorsList: LiveData<List<Actor>> get() = _mutableActorsList
 
     init {
         viewModelScope.launch {
 
             _mutableLoadingState.value = true
 
-            val movie = getMovieById(getApplication(), movieId)
+            val movie = RetrofitClient.getMovieById(movieId)
             _mutableCurrentMovie.value = movie
+
+            val actors = RetrofitClient.getMovieActorsById(movieId).actors
+            _mutableActorsList.value = actors
 
             _mutableLoadingState.value = false
 

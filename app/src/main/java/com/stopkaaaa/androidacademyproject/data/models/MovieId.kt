@@ -4,14 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Genre(
+data class MovieId (
     @SerialName("id")
-    val id: Int,
-
-    @SerialName("name")
-    val name: String
-) {
-    override fun toString(): String {
-        return name
-    }
-}
+    internal val id: Int
+)

@@ -19,6 +19,4 @@ class MoviesDataSourceFactory(
         _moviesDataSourceLiveData.postValue(moviesDataSource)
         return moviesDataSource
     }
-
-    fun getSource() = moviesDataSourceLiveData.value
 }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -54,21 +55,30 @@ class FragmentMoviesList : Fragment() {
     private fun updatePaginationState(state: PaginationState) {
         when (state) {
             PaginationState.DONE -> {
-                binding.progressBar.visibility = View.GONE
-                binding.movieListRv.visibility = View.VISIBLE
+                binding.progressBar.isVisible = false
+                binding.movieListRv.isVisible = true
+                binding.progressBarBottom.isVisible = false
             }
             PaginationState.EMPTY -> {
-                binding.progressBar.visibility = View.GONE
-                binding.movieListRv.visibility = View.INVISIBLE
+                binding.progressBar.isVisible = false
+                binding.movieListRv.isVisible = false
+                binding.progressBarBottom.isVisible = false
             }
-            PaginationState.LOADING -> {
-                binding.progressBar.visibility = View.VISIBLE
-                binding.movieListRv.visibility = View.INVISIBLE
+            PaginationState.LOADING_INITIAL -> {
+                binding.progressBar.isVisible = true
+                binding.movieListRv.isVisible = false
+                binding.progressBarBottom.isVisible = false
+            }
+            PaginationState.LOADING_AFTER -> {
+                binding.progressBar.isVisible = false
+                binding.movieListRv.isVisible = true
+                binding.progressBarBottom.isVisible = true
             }
             PaginationState.ERROR -> {
-                binding.progressBar.visibility = View.GONE
-                binding.movieListRv.visibility = View.VISIBLE
-                Toast.makeText(this.context, "No Connection", Toast.LENGTH_LONG).show()
+                binding.progressBar.isVisible = false
+                binding.movieListRv.isVisible = false
+                binding.progressBarBottom.isVisible = false
+                Toast.makeText(this.context, "Error", Toast.LENGTH_LONG).show()
             }
         }
     }
@@ -91,12 +101,9 @@ class FragmentMoviesList : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        if (listenerMovie != null) {
-            moviesAdapter = MoviesPagedListAdapter(listenerMovie!!)
-        } else {
-            throw IllegalArgumentException("No listener")
+        listenerMovie?.let {
+            moviesAdapter = MoviesPagedListAdapter(it)
         }
-
         binding.movieListRv.apply {
             adapter = moviesAdapter
             addItemDecoration(

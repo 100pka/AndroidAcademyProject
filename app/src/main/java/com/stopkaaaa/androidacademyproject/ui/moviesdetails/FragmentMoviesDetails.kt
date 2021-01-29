@@ -76,6 +76,7 @@ class FragmentMoviesDetails : Fragment() {
                 .subSequence(1, genres.toString().length - 1)
             binding.backgroundPoster.load(BuildConfig.TMDB_IMAGE_URL + movie.backdrop) {
                 placeholder(R.drawable.backdrop_placeholder)
+                error(R.drawable.backdrop_placeholder)
             }
             binding.reviewsCount.text = resources.getString(R.string.reviews, votes)
             binding.rating.rating = ratings.div(2).toFloat()

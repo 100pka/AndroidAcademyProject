@@ -3,8 +3,6 @@ package com.stopkaaaa.androidacademyproject.data.net
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.stopkaaaa.androidacademyproject.BuildConfig
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

@@ -24,7 +24,7 @@ class MoviesDataSource(
         callback: LoadInitialCallback<Int, Movie>
     ) {
         retryQuery = { loadInitial(params, callback) }
-        updateState(PaginationState.LOADING)
+        updateState(PaginationState.LOADING_INITIAL)
         executeQuery(1) {
             callback.onResult(it, null, 2)
         }
@@ -35,6 +35,7 @@ class MoviesDataSource(
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Movie>) {
         val page = params.key
         retryQuery = { loadAfter(params, callback) }
+
         executeQuery(page) {
             callback.onResult(it, page.plus(1))
         }
@@ -45,10 +46,10 @@ class MoviesDataSource(
         callback: (List<Movie>) -> Unit
     ) {
         scope.launch {
-            if (page == 1) {
-                callback(repository.getSavedMovies())
+            if (page > 1) {
+                updateState(PaginationState.LOADING_AFTER)
             }
-            val result = repository.getPopularMoviesByPage(page)
+            val result = RetrofitClient.getPopularMoviesByPage(page)
             retryQuery = null
             val moviesId = result.body()
             var movies: List<Movie>? = null

@@ -47,8 +47,3 @@ data class Movie(
     @SerialName("vote_count")
     val votes: Int
 )
-
-
-
-
-

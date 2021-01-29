@@ -49,7 +49,7 @@ class MoviesDataSource(
             if (page > 1) {
                 updateState(PaginationState.LOADING_AFTER)
             }
-            val result = RetrofitClient.getPopularMoviesByPage(page)
+            val result = repository.getPopularMoviesByPage(page)
             retryQuery = null
             val moviesId = result.body()
             var movies: List<Movie>? = null

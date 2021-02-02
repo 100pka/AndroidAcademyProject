@@ -74,11 +74,17 @@ class FragmentMoviesList : Fragment() {
                 binding.movieListRv.isVisible = true
                 binding.progressBarBottom.isVisible = true
             }
+            PaginationState.CONNECTION_LOST -> {
+                binding.progressBar.isVisible = false
+                binding.movieListRv.isVisible = true
+                binding.progressBarBottom.isVisible = false
+                Toast.makeText(this.context, "Lost connection", Toast.LENGTH_LONG).show()
+            }
             PaginationState.ERROR -> {
                 binding.progressBar.isVisible = false
                 binding.movieListRv.isVisible = false
                 binding.progressBarBottom.isVisible = false
-                Toast.makeText(this.context, "Error", Toast.LENGTH_LONG).show()
+                Toast.makeText(this.context, "Something goes wrong", Toast.LENGTH_LONG).show()
             }
         }
     }

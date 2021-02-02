@@ -1,6 +1,5 @@
 package com.stopkaaaa.androidacademyproject.data
 
-import androidx.lifecycle.LiveData
 import com.stopkaaaa.androidacademyproject.data.models.Movie
 import com.stopkaaaa.androidacademyproject.data.net.RetrofitClient
 import com.stopkaaaa.androidacademyproject.db
@@ -28,7 +27,7 @@ class MovieRepositoryImpl : MovieRepository {
         movieDao.insert(movie)
     }
 
-    override suspend fun getSavedMovies(): List<Movie> = withContext(Dispatchers.IO){
+    override suspend fun getSavedMovies() = withContext(Dispatchers.IO){
         movieDao.getAll()
     }
 }

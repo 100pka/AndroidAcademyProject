@@ -3,6 +3,7 @@ package com.stopkaaaa.androidacademyproject.data.net
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.stopkaaaa.androidacademyproject.BuildConfig
+import com.stopkaaaa.androidacademyproject.networkConnectionInterceptor
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -27,6 +28,7 @@ object RetrofitClient {
 
     private val okHttpClient = OkHttpClient().newBuilder()
         .addNetworkInterceptor(authInterceptor)
+        .addInterceptor(networkConnectionInterceptor)
         .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
         .build()
 

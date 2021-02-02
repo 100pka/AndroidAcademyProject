@@ -3,10 +3,15 @@ package com.stopkaaaa.androidacademyproject.data.paging
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.paging.DataSource
 import androidx.paging.PageKeyedDataSource
 import com.stopkaaaa.androidacademyproject.data.MovieRepository
 import com.stopkaaaa.androidacademyproject.data.models.Movie
+import com.stopkaaaa.androidacademyproject.data.models.MovieListResponse
+import com.stopkaaaa.androidacademyproject.data.net.NetworkConnectionInterceptor
+import com.stopkaaaa.androidacademyproject.data.net.NoConnectivityException
 import kotlinx.coroutines.*
+import retrofit2.Response
 
 class MoviesDataSource(
     private val repository: MovieRepository
@@ -46,20 +51,29 @@ class MoviesDataSource(
         callback: (List<Movie>) -> Unit
     ) {
         scope.launch {
+            var movies: List<Movie>? = null
+            val result: Response<MovieListResponse>
             if (page > 1) {
                 updateState(PaginationState.LOADING_AFTER)
             }
-            val result = repository.getPopularMoviesByPage(page)
-            retryQuery = null
-            val moviesId = result.body()
-            var movies: List<Movie>? = null
-            if (moviesId?.moviesIdList != null && moviesId.moviesIdList.isNotEmpty()) {
-                movies = List(moviesId.moviesIdList.size) {
-                    repository.getMovieById(moviesId.moviesIdList[it].id)
+            try {
+                result = repository.getPopularMoviesByPage(page)
+                retryQuery = null
+                val moviesId = result.body()
+                if (moviesId?.moviesIdList != null && moviesId.moviesIdList.isNotEmpty()) {
+                    movies = List(moviesId.moviesIdList.size) {
+                        repository.getMovieById(moviesId.moviesIdList[it].id)
+                    }
+                    movies.map { repository.saveMovie(it) }
+                    updateState(PaginationState.DONE)
+                } else {
+                    updateState(PaginationState.EMPTY)
                 }
-                updateState(PaginationState.DONE)
-            } else updateState(PaginationState.EMPTY)
-            callback(movies?: listOf())
+                callback(movies ?: listOf())
+            } catch (e: NoConnectivityException) {
+                callback(repository.getSavedMovies())
+                updateState((PaginationState.CONNECTION_LOST))
+            }
         }
     }
 
@@ -69,6 +83,6 @@ class MoviesDataSource(
 
     private fun getJobErrorHandler() = CoroutineExceptionHandler { _, e ->
         Log.e(MoviesDataSource::class.java.simpleName, "An error happened: $e")
-        updateState(PaginationState.ERROR)
+            updateState(PaginationState.ERROR)
     }
 }
